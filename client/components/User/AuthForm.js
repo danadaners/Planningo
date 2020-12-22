@@ -5,7 +5,7 @@ import { auth } from "../../store";
 import { withRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
 import "./authform.css";
-// import UserIcons from './Images/UserIcons'
+import LazyLoad from "react-lazy-load"
 
 import {
   FaEnvelope,
@@ -63,8 +63,8 @@ class AuthForm extends React.Component {
     ];
     const images = array.map((image) => {
       return (
+        <LazyLoad key={image} width={80} height={80}>
         <img
-          key={image}
           src={`/assets/icons/users/${image}.png`}
           className={
             this.state.selected === `/assets/icons/users/${image}.png`
@@ -76,6 +76,7 @@ class AuthForm extends React.Component {
           }}
           value={image}
         />
+        </LazyLoad>
       );
     });
 

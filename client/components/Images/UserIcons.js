@@ -305,7 +305,7 @@ class MiscIcons extends React.Component {
     ];
     const images = array.map((image) => {
       return (
-        <LazyLoad key={image}>
+        <LazyLoad key={image} width={80} height={80}>
           <img
             src={`/assets/icons/users/${image}.png`}
             className={

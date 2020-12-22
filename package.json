@@ -44,7 +44,6 @@
     "jwks-rsa": "^1.11.0",
     "lit-element": "^2.4.0",
     "luxon": "^1.25.0",
-    "morgan": "^1.10.0",
     "passport": "^0.4.1",
     "passport-google-oauth": "^2.0.0",
     "pg": "^7.9.0",
