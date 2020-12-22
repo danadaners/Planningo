@@ -11,7 +11,7 @@ import {   FaCheck,
 
 import getDate from "date-fns/getDate";
 
-const TopNav = ({ toggleSideNav, sideNavOpen }) => {
+const TopNav = React.memo(({ toggleSideNav, sideNavOpen }) => {
   return (
     <div className="topnav-wrapper">
       <div id="left-nav-links">
@@ -67,6 +67,6 @@ const TopNav = ({ toggleSideNav, sideNavOpen }) => {
       </div>
     </div>
   );
-};
+});
 
 export default TopNav;
