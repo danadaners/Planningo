@@ -46,7 +46,7 @@
 
 .top-nav-icon{
   text-align: center;
-  font-size: 20px;
+  font-size: 22px;
   color: #fefde9;
   cursor: pointer;
 }
@@ -54,7 +54,8 @@
 
 .top-nav-icon.cal {
   position: absolute;
-  font-size: 23px;
+  font-size: 22px;
+  margin-bottom: 3px;
 }
 
 
@@ -65,9 +66,12 @@
   color: white;
   font-family: "Roboto", sans-serif;
   font-size: 12px;
-  margin-left: 5px;
   margin-top: 7px;
   font-weight: bold;
+}
+
+.top-nav-date.one {
+  margin-left: 4px;
 }
 
 .top-nav-date.two {

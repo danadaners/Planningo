@@ -50,7 +50,7 @@ const TopNav = React.memo(({ toggleSideNav, sideNavOpen }) => {
       <div id="right-nav-links">
         <div id="each-top-nav-link">
           <Link to="/calendar">
-            <div className={getDate(new Date()).length === 1 ? "top-nav-date two" : "top-nav-date"}>{getDate(new Date())}</div>
+            <div className={getDate(new Date()).length === 1 ? "top-nav-date two" : "top-nav-date one"}>{getDate(new Date())}</div>
             <div className="top-nav-icon cal">
               <FaRegCalendar/>
             </div>

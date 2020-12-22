@@ -27,7 +27,7 @@ class SideNav extends React.Component {
         <div id="nav-user-wrap">
           <div id="user-nav">
             <Link to="/account" onClick={toggleSideNav}>
-              <img src={user.avatarUrl} id="user-icon" style={{backgroundColor: user.color}}></img>
+              <img src={user.avatarUrl} id="user-icon" style={{backgroundColor: user.color}} width={80} height={80}></img>
             </Link>
             {user.firstName}{" "}{user.lastName}
           </div>

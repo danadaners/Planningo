@@ -30,13 +30,8 @@ this.props.fetchUserTasks();
       <div className="userhome-wrapper">
         <h3>{`Hello, ${firstName}`}</h3>
 
-        <p>{`On your dashboard for today...`}</p>
-        <br></br>
-        <div className="search-container">
-          <form id="search-exapnd">
-            <input type="search"></input>
-          </form>
-        </div>
+       <h3>Your tasks for today:</h3>
+
 
         {tasks && tasks.length > 0 ? (
           <ul>
@@ -50,11 +45,12 @@ this.props.fetchUserTasks();
               .map((task) => {
                 return <li key={task.id}>{task.name}</li>;
               })}
-            <Link to="/tasks">Add a new task!</Link>
           </ul>
         ) : (
-          <Link to="/tasks">Add a new task!</Link>
+          "You have no tasks for today."
         )}
+                  <Link to="/tasks">Go to my tasks</Link>
+
       </div>
     );
   }
