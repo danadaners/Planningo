@@ -1,0 +1,21 @@
+.icon-component{
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.pick-icon-widget {
+  width: 40px;
+  height: auto;
+  padding-top: 50%;
+  cursor: pointer;
+  margin-left: 10px;
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

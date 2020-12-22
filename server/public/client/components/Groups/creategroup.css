@@ -1,0 +1,112 @@
+.create-group-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#wrap-icons {
+  width: 100%;
+  height: 25%;
+  margin-bottom: 15px;
+}
+
+.current-icon {
+  width: 70px;
+  height: 70px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.current-icon-image {
+  width: 40px;
+  height: 40px;
+}
+
+#create-group-header {
+  font-family: "Poppins", sans-serif;
+  letter-spacing: 3px;
+  color: black;
+  font-size: 25px;
+  font-weight: 400;
+  margin-top: 2%;
+}
+
+.create-group-input {
+  width: 80%;
+  resize: none;
+  border-radius: 2px;
+}
+
+.create-group-wrapper label{
+  color: black;
+}
+.create-group-input::placeholder {
+  color: black;
+  font-size: 90%;
+}
+
+.create-group-input.color {
+  display: none;
+}
+
+.pick-color {
+  width: 8%;
+  height: auto;
+  cursor: pointer;
+  border-radius: 50%;
+  padding-top: 8%;
+}
+
+#color-picker {
+  display: flex;
+  width: 90%;
+  height: max-content;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-bottom: 15px;
+}
+
+#add-group-form-create-group {
+  width: 90%;
+  height: 95%;
+  display: flex;
+  flex-direction: column;
+  font-family: "Poppins", sans-serif;
+  background-color: white;
+  align-items: center;
+  font-size: 14px;
+  justify-content: center;
+}
+
+.create-group-form-button {
+  background-color: #ff7290;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-family: "Poppins", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 16px;
+  border-radius: 10px;
+  width: max-content;
+  padding: 2%;
+  margin-top: 2%;
+}
+
+@media (max-width: 730px) {
+  .create-group-wrapper {
+    max-height: 90vh;
+  }
+}
+
+#errormsg{
+  color: red;
+  font-weight: 400;
+}

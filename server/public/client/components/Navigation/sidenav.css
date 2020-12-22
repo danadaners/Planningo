@@ -1,0 +1,146 @@
+.side-nav-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#user-icon {
+  width: 80px;
+  height: auto;
+  border-radius: 50%;
+  background-color: #fefde9;
+  border: 3px solid white;
+  margin-bottom: 15px;
+}
+
+#linktogroup {
+  font-family: "Poppins", sans-serif;
+  letter-spacing: 1px;
+  font-size: 15px;
+  color: white;
+}
+
+#linktogroup span {
+  text-decoration: underline;
+}
+
+#nav-user-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 70%;
+  font-family: "Poppins", sans-serif;
+  letter-spacing: 1px;
+  font-size: 20px;
+  color: #fefde9;
+}
+
+#user-nav {
+  height: 30%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #f2afa6;
+  width: 100%;
+}
+/* Groups */
+#nav-group {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  /* overflow-x: none;
+  overflow-y: auto; */
+}
+
+.nav-tool-title {
+  background-color: #ff7290;
+  width: 100%;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 12px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  height: 40px;
+}
+
+.nav-user-links {
+  width: 100%;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 1px;
+  font-size: 12px;
+  justify-content: flex-end;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-user-links.a {
+  background-color: #c2deae;
+}
+
+.nav-user-links.b {
+  background-color: #ffc573;
+}
+.nav-user-links a {
+  color: white;
+}
+
+.side-icon-bar {
+  display: inline-block;
+}
+
+#each-nav-group {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  height: 80px;
+  justify-content: center;
+  font-family: "Poppins", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 12px;
+}
+
+.nav-group-icon {
+  border-radius: 50%;
+  width: 50px;
+  height: auto;
+  display: inline-block;
+  border: 2px solid #fefde9;
+}
+
+#nav-group a {
+  color: #fefde9;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+#nav-group-name {
+  height: 100%;
+  width: 60%;
+}
+
+.nav-user-links-wrap {
+  bottom: 0;
+  width: 100%;
+  height: 10%;
+  display: flex;
+  flex-direction: column;
+}
