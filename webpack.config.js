@@ -1,5 +1,4 @@
 const isDev = process.env.NODE_ENV === "development";
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
   mode: isDev ? "development" : "production",
@@ -17,9 +16,6 @@ module.exports = {
   watchOptions: {
     ignored: /node_modules/,
   },
-  plugins: [
-    new BundleAnalyzerPlugin(),
-  ],
   module: {
     rules: [
       {
