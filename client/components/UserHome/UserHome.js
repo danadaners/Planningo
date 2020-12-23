@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import "./UserHome.css";
 import { fetchUserTasksThunk } from "../../store/tasks";
 import { format } from "date-fns";
+import '@pwabuilder/pwainstall'
 
 class UserHome extends React.Component {
   constructor(props) {
@@ -26,6 +27,7 @@ class UserHome extends React.Component {
 
     return (
       <div className="userhome-wrapper">
+        <pwa-install></pwa-install>
         <h3>{`Hello, ${firstName}`}</h3>
 
         <h3>Your tasks for today:</h3>
