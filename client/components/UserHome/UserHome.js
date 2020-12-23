@@ -6,16 +6,14 @@ import "./UserHome.css";
 import { fetchUserTasksThunk } from "../../store/tasks";
 import { format } from "date-fns";
 
-
 class UserHome extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-    };
+    this.state = {};
   }
 
-componentDidMount() {
-this.props.fetchUserTasks();
+  componentDidMount() {
+    this.props.fetchUserTasks();
   }
 
   render() {
@@ -30,8 +28,7 @@ this.props.fetchUserTasks();
       <div className="userhome-wrapper">
         <h3>{`Hello, ${firstName}`}</h3>
 
-       <h3>Your tasks for today:</h3>
-
+        <h3>Your tasks for today:</h3>
 
         {tasks && tasks.length > 0 ? (
           <ul>
@@ -49,8 +46,7 @@ this.props.fetchUserTasks();
         ) : (
           "You have no tasks for today."
         )}
-                  <Link to="/tasks">Go to my tasks</Link>
-
+        <Link to="/tasks">Go to my tasks</Link>
       </div>
     );
   }

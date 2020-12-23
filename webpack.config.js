@@ -1,4 +1,5 @@
 const isDev = process.env.NODE_ENV === "development";
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
   mode: isDev ? "development" : "production",
@@ -16,6 +17,9 @@ module.exports = {
   watchOptions: {
     ignored: /node_modules/,
   },
+  plugins: [
+    new BundleAnalyzerPlugin(),
+  ],
   module: {
     rules: [
       {
@@ -28,20 +32,17 @@ module.exports = {
         use: ["style-loader", "css-loader"],
       },
       {
-        test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
-        loader: require.resolve('url-loader'),
-        options: {
-            limit: 10000,
-            name: 'static/media/[name].[hash:8].[ext]',
-        },
-    },
-    {
-        test: [/\.eot$/, /\.ttf$/, /\.svg$/, /\.woff$/, /\.woff2$/],
-        loader: require.resolve('file-loader'),
-        options: {
-            name: 'static/media/[name].[hash:8].[ext]',
-        },
-    },
+        test: /\.(png|svg|jpg|gif|jpe?g)$/,
+        use: [
+          {
+            options: {
+              name: "[name].[ext]",
+              outputPath: "images/"
+            },
+            loader: "file-loader"
+          }
+        ]
+      }
     ],
   },
 };

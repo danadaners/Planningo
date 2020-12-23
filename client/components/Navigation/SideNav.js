@@ -12,7 +12,9 @@ class SideNav extends React.Component {
   }
 
   componentDidMount() {
+    if(this.props.isLoggedIn){
     this.props.fetchGroups(this.props.user.id);
+    }
   }
 
   async handleDelete(id) {
@@ -84,4 +86,5 @@ export default connect(mapState, mapDispatch)(SideNav);
 
 SideNav.propTypes = {
   handleClick: PropTypes.func.isRequired,
+  isLoggedIn: PropTypes.bool.isRequired,
 };

@@ -42,30 +42,6 @@ class MyStats extends React.Component {
                 style={{ data: { fill: "#ACB9E1" } }}
               />
             </VictoryChart>
-            {/* <VictoryChart domainPadding={20} theme={VictoryTheme.material}>
-              <VictoryAxis
-                tickValues={[
-                  "Home",
-                  "Work",
-                  "Finance",
-                  "School",
-                  "Family",
-                  "Grocery",
-                ]}
-              />
-              <VictoryAxis dependentAxis tickFormat={(x) => `${x / 1}`} />
-              <VictoryBar
-                categories={{
-                  x: ["Home",
-                  "Work",
-                  "Finance",
-                  "School",
-                  "Family",
-                  "Grocery",]
-                }}
-                data={categories.map()}
-              />
-            </VictoryChart> */}
           </div>
         ) : (
           <h3>No Info to Display Yet</h3>
@@ -73,17 +49,6 @@ class MyStats extends React.Component {
       </div>
     );
   }
-
-  // return (
-  //   <div>
-  //     <h1>My Stats</h1>
-  //     <VictoryChart domainPadding={10} theme={VictoryTheme.material}>
-  //       <VictoryAxis tickValues={["school", "work", "housework", "hobby"]} />
-  //       <VictoryAxis dependentAxis tickFormat={(x) => `${x / 1}`} />
-  //       <VictoryBar data={data} x={"task"} y={"points"} />
-  //     </VictoryChart>
-  //   </div>
-  // );
 }
 
 const mapState = (state) => ({
