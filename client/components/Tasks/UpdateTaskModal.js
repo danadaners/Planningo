@@ -5,7 +5,7 @@ import { fetchTasksThunk } from "../../store/tasks";
 import { fetchGroupsThunk } from "../../store/allGroups";
 import "./taskmodal.css";
 import KeyboardDatePickerTab from "../Calendar/DatePicker";
-import {   FaTimes } from 'react-icons/fa'
+import { FaTimes } from 'react-icons/fa'
 
 class UpdateTaskModal extends Component {
   constructor(props) {

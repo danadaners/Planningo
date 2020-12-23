@@ -14,7 +14,6 @@ export const Account = (props) => {
       <h3>My Account</h3>
       <Link to="/account/settings">Account Settings</Link>
       <div>Edit Groups</div>
-      <Link to="/mystats">My Stats</Link>
     </div>
   );
 };

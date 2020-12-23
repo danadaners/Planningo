@@ -75,6 +75,7 @@ class SideNav extends React.Component {
 const mapState = (state) => ({
   groups: state.groups,
   user: state.user,
+  isLoggedIn: !!state.user.id,
 });
 
 const mapDispatch = (dispatch) => ({

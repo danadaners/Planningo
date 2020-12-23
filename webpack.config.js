@@ -12,7 +12,7 @@ module.exports = {
     filename: './public/bundle.js',
   },
   resolve: {
-    extensions: [".js", ".jsx"],
+    extensions: [".js", ".jsx", ".mjs"],
   },
   watchOptions: {
     ignored: /node_modules/,

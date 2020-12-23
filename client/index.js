@@ -11,7 +11,7 @@ import {
 import LuxonUtils from '@date-io/luxon'
 
 ReactDOM.render(
-  
+
   <Provider store={store}>
     <Router history={history}>
     <MuiPickersUtilsProvider utils={LuxonUtils}>

@@ -18,8 +18,6 @@ import {
   SingleGroup,
   GroupShoppingList,
   GroupTaskList,
-  MyStats,
-  GroupRewards,
 } from "./components";
 import { me } from "./store";
 
@@ -54,11 +52,6 @@ class Routes extends Component {
             />
             <Route exact path="/groups/create" component={CreateGroup} />
             <Route exact path="/groups/:groupId" component={withRouter(SingleGroup)} />
-            <Route
-              exact
-              path="/groups/:groupId/rewards"
-              component={GroupRewards}
-            />
 
             <Route
               exact
@@ -70,7 +63,6 @@ class Routes extends Component {
               path="/groups/:groupId/shoppinglist"
               component={GroupShoppingList}
             />
-            <Route exact path="/mystats" component={MyStats} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}

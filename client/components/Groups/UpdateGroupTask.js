@@ -60,8 +60,7 @@ class UpdateGroupTaskModal extends Component {
   render() {
     let group = this.props.group;
     let categories = group && group.categories;
-    console.log(this.props.group, " this props group in UGT");
-    console.log(this.props, "this.props in UGT");
+
     if (!this.props.showTask || !this.props.selectedTask) {
       return null;
     }
