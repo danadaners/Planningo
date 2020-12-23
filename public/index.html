@@ -10,7 +10,10 @@
     <meta name="description" content="Planningo" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/manifest.json" />
-
+        <script
+    type="module"
+    src="https://cdn.jsdelivr.net/npm/@pwabuilder/pwainstall"
+  ></script>
     <script>
       var host = "https://planningo.herokuapp.com/";
       if (
@@ -45,6 +48,8 @@
 
     <title>Planningo</title>
 
+    <script type="module" src="pwabuilder-sw-register.js"></script>
+
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
     <link
       media="print"
@@ -62,11 +67,7 @@
     <script defer src="/bundle.js"></script>
   </head>
   <body>
-    <pwa-install></pwa-install>
-    <script
-    type="module"
-    src="https://cdn.jsdelivr.net/npm/@pwabuilder/pwainstall"
-  ></script>
+  <pwa-install></pwa-install>
 
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="app"></div>
