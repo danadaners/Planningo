@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { me } from "../../store";
 import { updateUserThunk, updatePasswordThunk } from "../../store/user";
+import "./accountsettings.css";
 
 class AccountSettings extends Component {
   constructor(props) {
@@ -31,9 +32,9 @@ class AccountSettings extends Component {
     const { user } = this.props;
 
     return (
-      <div>
+      <div className="account-settings-wrapper">
         <div>
-          <h3>Personal Info:</h3>
+          <div className="account-settings-header">PERSONAL INFO:</div>
 
           {this.state.formStatus ? (
             <div>
@@ -121,11 +122,13 @@ class AccountSettings extends Component {
             </div>
           ) : (
             <div>
-              <button onClick={this.toggleFormStatus}>Edit</button>
               <p>
                 Name: {user.firstName} {user.lastName}
               </p>
               <p>Email: {user.email} </p>
+              <div>
+                <button className="edit-account-button" onClick={this.toggleFormStatus}>Edit</button>
+              </div>
             </div>
           )}
         </div>
