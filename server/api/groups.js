@@ -1,27 +1,30 @@
 const router = require("express").Router();
 const {
   Group,
-  User_Group,
   User,
   Task,
-  User_Task,
   Category,
   Point,
 } = require("../db/models");
 
 router.get("/", async (req, res, next) => {
   try {
-    const group = await req.user.getGroups({
+    const user = await User.findByPk(req.user.id)
+
+    const group = await Group.findOne({
+      where: {
+        id: user.groupId
+      },
       include: [
         {
-          model: Category,
+          model: User,
         },
         {
-          model: User
+          model: Category,
         }
       ],
-    });
-    res.json(group);
+    })
+    res.json([group]);
   } catch (err) {
     next(err);
   }
@@ -65,10 +68,10 @@ router.post("/", async (req, res, next) => {
       color: req.body.color,
       imageUrl: req.body.imageUrl
     });
-    await User_Group.create({
-      userId: req.user.id,
-      groupId: group.id,
-      role: "admin",
+    const user = await User.findByPk(req.user.id)
+
+    await user.update({
+        groupId: group.id
     });
 
     await Category.bulkCreate([
@@ -145,40 +148,41 @@ router.delete("/:groupId", async (req, res, next) => {
   }
 });
 
-//POST USER to group
-router.post("/:groupId", async (req, res, next) => {
-  try {
-    const user = await User.findOne({
-      where: {
-        email: req.body.email,
-      },
-    });
-    const newUser = await User_Group.findOrCreate({
-      where: {
-        groupId: req.params.groupId,
-        userId: user.id,
-      },
-    });
-    res.json(newUser);
-  } catch (err) {
-    next(err);
-  }
-});
+// //POST USER to group
+// router.post("/:groupId", async (req, res, next) => {
+//   try {
+//     const user = await User.findOrCreate({
+//       where: {
 
-//DELETE USER from group
-router.delete("/:groupId/:userId", async (req, res, next) => {
-  try {
-    await User_Group.destroy({
-      where: {
-        groupId: req.params.groupId,
-        userId: req.params.userId,
-      },
-    });
-    res.sendStatus(204);
-  } catch (err) {
-    next(err);
-  }
-});
+//         email: req.body.email,
+//       },
+//     });
+//     // const newUser = await User_Group.findOrCreate({
+//     //   where: {
+//     //     groupId: req.params.groupId,
+//     //     userId: user.id,
+//     //   },
+//     // });
+//     res.json(user);
+//   } catch (err) {
+//     next(err);
+//   }
+// });
+
+// //DELETE USER from group
+// router.delete("/:groupId/:userId", async (req, res, next) => {
+//   try {
+//     await User_Group.destroy({
+//       where: {
+//         groupId: req.params.groupId,
+//         userId: req.params.userId,
+//       },
+//     });
+//     res.sendStatus(204);
+//   } catch (err) {
+//     next(err);
+//   }
+// });
 
 // GET /api/groups/:groupId/tasks
 router.get("/:groupId/tasks", async (req, res, next) => {
@@ -268,10 +272,6 @@ router.post("/:groupId/tasks", async (req, res, next) => {
       start: req.body.selectedDate,
       end: req.body.selectedDate,
     });
-    await User_Task.create({
-      userId: req.body.userId,
-      taskId: task.id,
-    });
 
     res.json(task);
   } catch (err) {
@@ -294,24 +294,6 @@ router.put("/:groupId/tasks", async (req, res, next) => {
       end: req.body.selectedDate,
       userId: req.body.userId,
     });
-
-    const userTask = await User_Task.findOne({
-      where: {
-        taskId: task.id,
-      },
-    });
-
-    User_Task.update(
-      {
-        userId: req.body.userId,
-      },
-      {
-        where: {
-          taskId: task.id,
-          userId: userTask.userId,
-        },
-      }
-    );
 
     res.json(task);
   } catch (err) {

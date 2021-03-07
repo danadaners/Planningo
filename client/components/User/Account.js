@@ -2,6 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { fetchGroupsThunk } from "../../store/allGroups";
+import "./account.css";
 
 /**
  * COMPONENT
@@ -10,10 +12,12 @@ export const Account = (props) => {
   const { email } = props;
 
   return (
-    <div>
-      <h3>My Account</h3>
-      <Link to="/account/settings">Account Settings</Link>
-      <div>Edit Groups</div>
+    <div className="account-page-wrapper">
+        <div className="account-header" >MY ACCOUNT</div>
+        <div className="account-options">
+          <Link to="/account/settings">Account Settings</Link>
+          <div>Edit Groups</div>
+        </div>
     </div>
   );
 };

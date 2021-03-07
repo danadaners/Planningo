@@ -56,6 +56,7 @@ class UpdateTaskModal extends Component {
   };
 
   render() {
+    console.log(this.props.groups)
     const group = this.props.groups.find((x) => x.id === this.state.groupId);
     const categories = group && group.categories;
 

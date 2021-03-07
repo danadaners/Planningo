@@ -9,32 +9,32 @@ const Sequelize = require("sequelize");
 
 //ASSOCIATIONS
 //**********USER AND GROUP --- USER_GROUP THROUGH TABLE ***********
-const User_Group = db.define("User_Group", {
-  role: {
-    type: Sequelize.ENUM("admin", "member"),
-    defaultValue: "member",
-  },
-  color: {
-    type: Sequelize.STRING,
-    defaultValue: "#EAEACF",
-  },
-  // points: {
-  //   type: Sequelize.INTEGER,
-  //   defaultValue: 0,
-  // },
-});
-User.belongsToMany(Group, { through: "User_Group" });
-Group.belongsToMany(User, { through: "User_Group" });
+// const User_Group = db.define("User_Group", {
+//   role: {
+//     type: Sequelize.ENUM("admin", "member"),
+//     defaultValue: "member",
+//   },
+//   color: {
+//     type: Sequelize.STRING,
+//     defaultValue: "#EAEACF",
+//   },
+//   // points: {
+//   //   type: Sequelize.INTEGER,
+//   //   defaultValue: 0,
+//   // },
+// });
+User.belongsTo(Group);
+Group.hasMany(User);
 //***************************************************************** */
 
 //Task and Group --- one-to-many
 
 Group.hasMany(Task), Task.belongsTo(Group);
 
-const User_Task = db.define("User_Task", {});
+// const User_Task = db.define("User_Task", {});
 
-User.belongsToMany(Task, { through: "User_Task" });
-Task.belongsToMany(User, { through: "User_Task" });
+User.hasMany(Task);
+Task.belongsTo(User);
 
 //Categories
 Category.hasMany(Task), Task.belongsTo(Category);
@@ -60,8 +60,8 @@ module.exports = {
   User,
   Task,
   Group,
-  User_Group,
-  User_Task,
+  // User_Group,
+  // User_Task,
   Category,
   Point,
 };

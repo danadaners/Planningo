@@ -28,8 +28,8 @@ const setGroupUsers = (groups) => ({ type: GET_GROUP_USERS, groups });
  */
 
 export const fetchGroupsThunk = () => async (dispatch) => {
-    const { data: groups } = await axios.get(`/api/groups`);
-    dispatch(getGroups(groups));
+    const { data: group } = await axios.get(`/api/groups`);
+    dispatch(getGroups(group));
 };
 
 export const fetchGroupUsersThunk = (groupId) => {

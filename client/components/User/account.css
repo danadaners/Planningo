@@ -1,0 +1,34 @@
+.account-page-wrapper {
+  width: 40%;
+  height: 35%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-family: "Poppins", sans-serif;
+  letter-spacing: 3px;
+  color: white;
+  font-size: 20px;
+  font-weight: 400;
+  margin-top: 2%;
+  background-color: #9fe2bf;
+  border-radius: 2%;
+}
+
+.account-header {
+  text-align: center;
+  width: 100%;
+  line-height: 50px;
+  background-color: pink;
+  font-size: 25px;
+  font-weight: 450;
+  border-radius: 2%;
+}
+
+.account-options {
+  text-align: center;
+  margin: 40px;
+}
+
+a:visited {
+  color: white;
+}

@@ -3,6 +3,15 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { me } from "../../store";
 import { updateUserThunk, updatePasswordThunk } from "../../store/user";
+import { fetchGroupsThunk } from "../../store/allGroups";
+import "./accountsettings.css";
+import {
+  FaEnvelope,
+  FaKey,
+  FaUserCircle,
+  FaArrowLeft,
+  FaArrowRight,
+} from "react-icons/fa";
 
 class AccountSettings extends Component {
   constructor(props) {
@@ -16,6 +25,7 @@ class AccountSettings extends Component {
 
   componentDidMount() {
     this.props.loadInitialData();
+    this.props.fetchGroups(this.props.userId);
   }
   toggleFormStatus() {
     this.setState({ formStatus: !this.state.formStatus });
@@ -31,13 +41,15 @@ class AccountSettings extends Component {
     const { user } = this.props;
 
     return (
-      <div>
-        <div>
-          <h3>Personal Info:</h3>
+      <div className="account-settings-wrapper">
+        <div> 
+          <div className="account-settings-header">PERSONAL INFO:</div>
 
           {this.state.formStatus ? (
             <div>
-              <button onClick={this.toggleFormStatus}>Cancel Edit</button>
+              <div>
+              <button className="cancel-edit" onClick={this.toggleFormStatus}><FaArrowLeft/></button>
+              </div>
               <form id="edit-profile-form">
                 <label htmlFor="name">Icon: </label>
                 <input
@@ -47,6 +59,7 @@ class AccountSettings extends Component {
                   placeholder={user.avatarUrl}
                   defaultValue={user.avatarUrl}
                 />
+                <p></p>
                 <label htmlFor="name"> Name: </label>
                 <input
                   name="firstName"
@@ -71,6 +84,7 @@ class AccountSettings extends Component {
                   placeholder={user.email}
                   defaultValue={user.email}
                 />
+                <p></p>
                 <button
                   className="update-profile"
                   type="button"
@@ -95,6 +109,7 @@ class AccountSettings extends Component {
                   type="password"
                   defaultValue={user.password}
                 />
+                <p></p>
                 <label htmlFor="new-password"> New Password: </label>
                 <input
                   name="new-password"
@@ -104,6 +119,7 @@ class AccountSettings extends Component {
                 />
                 {/* <label htmlFor="confirm-password"> Confirm Password: </label>
                 <input name="confirm-password" type="password" /> */}
+                <p></p>
                 <button
                   className="update-password"
                   type="button"
@@ -121,11 +137,15 @@ class AccountSettings extends Component {
             </div>
           ) : (
             <div>
-              <button onClick={this.toggleFormStatus}>Edit</button>
+              <div className="user-info">
               <p>
                 Name: {user.firstName} {user.lastName}
               </p>
               <p>Email: {user.email} </p>
+              </div>
+              <div>
+                <button className="edit-account-button" onClick={this.toggleFormStatus}>Edit</button>
+              </div>
             </div>
           )}
         </div>
@@ -136,6 +156,7 @@ class AccountSettings extends Component {
 
 const mapState = (state) => {
   return {
+    groups: state.groups,
     user: state.user,
   };
 };
@@ -151,6 +172,7 @@ const mapDispatch = (dispatch) => {
     updatePassword(userId, oldPassword, newPassword) {
       dispatch(updatePasswordThunk(userId, oldPassword, newPassword));
     },
+    fetchGroups: (userId) => dispatch(fetchGroupsThunk(userId)),
   };
 };
 

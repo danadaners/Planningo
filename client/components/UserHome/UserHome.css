@@ -8,6 +8,10 @@
   max-width: 100vw;
 }
 
+.tasks-link {
+  color: black;
+}
+
 #home-top {
   display: flex;
   justify-content: space-between;
