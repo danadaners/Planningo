@@ -35,24 +35,24 @@ class SideNav extends React.Component {
           </div>
 
           <h4 className="nav-tool-title">My Groups</h4>
-          {!groups.length ? (
-            <Link to={'/groups/create'} id="linktogroup" onClick={toggleSideNav}>You are not a part of any groups. <span>Create or Join one?</span></Link>
-          ) : (
-            <div id="nav-group">
-              {groups.map((group) => (
-                <div
-                  key={group.id}
-                  id="each-nav-group"
-                  style={{ backgroundColor: group.color }}
-                >
+          {groups && groups.length ? (
+              <div id="nav-group">
+                {groups.map((group) => (
+                  <div
+                    key={group.id}
+                    id="each-nav-group"
+                    style={{ backgroundColor: group.color }}
+                  >
                   <Link to={`/groups/${group.id}`} onClick={toggleSideNav}>
                     <img src={group.imageUrl} className="nav-group-icon"></img>
                     <div id="nav-group-name">{group.name}</div>
                   </Link>
-                </div>
-              ))}
-            </div>
-          )}
+                  </div>
+                  ))}
+              </div> ) : (
+             <Link to={'/groups/create'} id="linktogroup" onClick={toggleSideNav}>You are not a part of any groups. <span>Create or Join one?</span></Link>
+            )
+          }
         </div>
 
         <div className="nav-user-links-wrap">

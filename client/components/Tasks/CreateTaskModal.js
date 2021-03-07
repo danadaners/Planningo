@@ -94,6 +94,8 @@ class CreateTaskModal extends Component {
 
   render() {
     let categories = this.state.group.categories;
+    console.log(this.state.group)
+    console.log(categories)
 
     if (!this.props.show) {
       return null;

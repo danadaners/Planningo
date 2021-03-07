@@ -27,15 +27,15 @@ router.post("/", async (req, res, next) => {
       },
     });
 
-    const userTask = await User_Task.findOne({
-      where: {
-        taskId: taskId,
-      },
-    });
+    // const userTask = await User_Task.findOne({
+    //   where: {
+    //     taskId: taskId,
+    //   },
+    // });
 
     const user = await User.findOne({
       where: {
-        id: userTask.userId,
+        id: req.user.id
       },
     });
 

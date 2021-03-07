@@ -26,10 +26,10 @@ router.post("/", async (req, res, next) => {
 router.get("/", isAdmin, async (req, res, next) => {
   try {
     const users = await User.findAll({
-      attributes: ["id", "firstName", "lastName", "email", "isAdmin"],
-      include: {
-        model: Group,
-      },
+      attributes: ["id", "firstName", "lastName", "email", "isAdmin", "groupdId"],
+      // include: {
+      //   model: Group,
+      // },
     });
     res.json(users);
   } catch (err) {
@@ -39,11 +39,10 @@ router.get("/", isAdmin, async (req, res, next) => {
 
 router.get("/:userId", isAdmin, async (req, res, next) => {
   try {
-    const user = await User.findByPk(req.params.userId, {
-      include: {
-        model: Group,
-      },
-    });
+    const user = await User.findByPk(req.params.userId)
+      // include: {
+      //   model: Group,
+      // },
     res.json(user);
   } catch (err) {
     next(err);

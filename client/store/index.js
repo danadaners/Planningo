@@ -9,6 +9,29 @@ import groups from "./allGroups";
 import singleGroup from "./singleGroup";
 import points from "./point";
 
+const loadState = () => {
+  try {
+    const serializedState = localStorage.getItem('state');
+    if(serializedState === null) {
+      return undefined;
+    }
+    return JSON.parse(serializedState);
+  } catch (e) {
+    return undefined;
+  }
+};
+
+const saveState = (state) => {
+  try {
+    const serializedState = JSON.stringify(state);
+    localStorage.setItem('state', serializedState);
+  } catch (e) {
+    // Ignore write errors;
+  }
+};
+
+const persistedState = loadState();
+
 const reducer = combineReducers({
   user,
   singleTask,
@@ -18,10 +41,17 @@ const reducer = combineReducers({
   points,
 });
 
-const middleware = composeWithDevTools(
+// const middleware = composeWithDevTools(
+//   applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
+// );
+
+const store = createStore(reducer, composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
-);
-const store = createStore(reducer, middleware);
+));
+
+store.subscribe(() => {
+  saveState(store.getState());
+});
 
 export default store;
 export * from "./user";

@@ -1,6 +1,6 @@
 const router = require("express").Router();
 
-const { Task, User_Task, Group, User, Category } = require("../db/models");
+const { Task, Group, User, Category } = require("../db/models");
 
 //GET /api/tasks/home
 router.get("/home", async (req, res, next) => {
@@ -85,10 +85,10 @@ router.post("/", async (req, res, next) => {
       start: req.body.selectedDate,
       end: req.body.selectedDate,
     });
-    await User_Task.create({
-      userId: req.user.id,
-      taskId: task.id,
-    });
+    // await User_Task.create({
+    //   userId: req.user.id,
+    //   taskId: task.id,
+    // });
     res.json(task);
   } catch (err) {
     next(err);
@@ -107,10 +107,10 @@ router.post("/shopping", async (req, res, next) => {
       start: new Date(),
       end: new Date(),
     });
-    await User_Task.create({
-      userId: req.user.id,
-      taskId: task.id,
-    });
+    // await User_Task.create({
+    //   userId: req.user.id,
+    //   taskId: task.id,
+    // });
     res.json(task);
   } catch (err) {
     next(err);
@@ -141,16 +141,17 @@ router.patch("/:taskId", async (req, res, next) => {
   try {
     const task = await Task.findByPk(req.params.taskId);
     const { updatedFields } = req.body;
-    const userTask = await User_Task.findOne({
-      where: {
-        taskId: req.params.taskId,
-      },
-    });
+    // const userTask = await User_Task.findOne({
+    //   where: {
+    //     taskId: req.params.taskId,
+    //   },
+    // });
     const user = await User.findOne({
       where: {
-        id: userTask.userId,
+        id: task.userId,
       },
     });
+
     user.update({
       tasksCompleted: (user.tasksCompleted += 1),
     });

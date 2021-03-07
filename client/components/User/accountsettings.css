@@ -1,10 +1,9 @@
 .account-settings-wrapper {
-  width: 40%;
-  height: 45%;
+  min-width: 45%;
+  min-height: 44%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
   text-align: center;
   font-family: "Poppins", sans-serif;
   letter-spacing: 3px;
@@ -16,16 +15,68 @@
   border-radius: 2%;
 }
 
+#edit-profile-form {
+  font-size: 13px;
+}
+
+#edit-password-form {
+  font-size: 13px;
+  /* margin: 10px; */
+}
+
 .account-settings-header {
   text-align: center;
-  width: 116.5%;
+  min-width: 100%;
+  margin-right: 240px;
   line-height: 50px;
-  height: 50px;
   background-color: pink;
-  margin: -105px -35px 40px;
   font-size: 25px;
   font-weight: 450;
   border-radius: 2%;
+}
+
+.user-info {
+  text-align: center;
+  margin: 55px;
+}
+
+.cancel-edit {
+  cursor: pointer;
+  margin: auto;
+}
+
+.update-profile {
+  background-color: #ff7290;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-family: "Poppins", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 13px;
+  border-radius: 10px;
+  width: max-content;
+  padding: 1%;
+  cursor: pointer;
+  margin: 10px;
+}
+
+.update-password {
+  background-color: #ff7290;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-family: "Poppins", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 13px;
+  border-radius: 10px;
+  width: max-content;
+  padding: 1%;
+  margin: 10px;
+  cursor: pointer;
 }
 
 .edit-account-button {
@@ -39,8 +90,10 @@
   letter-spacing: 1px;
   font-size: 20px;
   border-radius: 10px;
+  margin: 10px;
   width: max-content;
   padding: 2%;
+  cursor: pointer;
 }
 
 a:visited {

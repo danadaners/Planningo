@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { updateGroupThunk, fetchSingleGroup } from "../../store/singleGroup";
 import { Link } from "react-router-dom";
 import { addToGroupThunk, deleteFromGroupThunk } from "../../store/singleGroup";
+import { fetchGroupsThunk } from "../../store/allGroups";
 import "./singlegroup.css";
 
 class SingleGroup extends React.Component {
@@ -18,6 +19,7 @@ class SingleGroup extends React.Component {
 
   componentDidMount() {
     this.props.fetchGroup(this.props.match.params.groupId);
+    this.props.fetchGroups(this.props.user.id);
   }
 
   handleChange(event) {
@@ -40,6 +42,8 @@ class SingleGroup extends React.Component {
 
   render() {
     const group = this.props.group;
+
+    console.log(group, "PLEASE LOG THIS WTF!!!!!!!!")
 
     return (
       <div key={group.id} id="group-info">
@@ -66,7 +70,7 @@ class SingleGroup extends React.Component {
           </div>
 
           <div className="single-grp-sidebar">
-            {group.users ? (
+            {group.users && group.users.length ? (
               <div className="single-grp-user-wrap">
                 <h3>Group Members</h3>
 
@@ -75,11 +79,11 @@ class SingleGroup extends React.Component {
                     <img
                       src={user.avatarUrl}
                       className="user-avatar"
-                      style={{ backgroundColor: user.User_Group.color }}
+                      style={{ backgroundColor: group.color }}
                     />
                     {/* <button onClick={() => this.deleteUser(user.id)}>X</button> */}
                     {(() => {
-                      if (user.User_Group.role === "admin") {
+                      if (user.isAdmin) {
                         return (
                           <div>
                             {user.firstName} {user.lastName} 🌟
@@ -118,6 +122,8 @@ class SingleGroup extends React.Component {
 }
 
 const mapState = (state) => ({
+  groups: state.groups,
+  user: state.user,
   group: state.singleGroup,
 });
 
@@ -126,6 +132,7 @@ const mapDispatch = (dispatch) => ({
     dispatch(deleteFromGroupThunk(groupId, userId)),
   fetchGroup: (group) => dispatch(fetchSingleGroup(group)),
   updateGroup: (group) => dispatch(updateGroupThunk(group)),
+  fetchGroups: (userId) => dispatch(fetchGroupsThunk(userId)),
   addUser: (groupId, userId) => dispatch(addToGroupThunk(groupId, userId)),
 });
 
