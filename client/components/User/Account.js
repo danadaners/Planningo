@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { fetchGroupsThunk } from "../../store/allGroups";
 import "./account.css";
-//fixing heroku
 
 /**
  * COMPONENT

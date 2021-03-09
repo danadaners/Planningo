@@ -6,7 +6,7 @@ import "./UserHome.css";
 import { fetchUserTasksThunk } from "../../store/tasks";
 import { fetchGroupsThunk } from "../../store/allGroups";
 // import { format } from "date-fns";
-import '@pwabuilder/pwainstall'
+// import '@pwabuilder/pwainstall'
 
 class UserHome extends React.Component {
   constructor(props) {
@@ -36,13 +36,13 @@ class UserHome extends React.Component {
 
     return (
       <div className="userhome-wrapper">
-        <pwa-install></pwa-install>
+        {/* <pwa-install></pwa-install> */}
         <h3>{`Hello, ${firstName}`}</h3>
 
         <h3>Your tasks for today:</h3>
 
         {tasks && tasks.length ? (
-          
+
           <ul>
             {tasks
               .filter((task) => {
