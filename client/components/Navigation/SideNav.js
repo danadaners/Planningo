@@ -17,11 +17,6 @@ class SideNav extends React.Component {
     }
   }
 
-  async handleDelete(id) {
-      await this.props.deleteGroup(id);
-      this.props.fetchGroups();
-  }
-
   render() {
     let { groups, user, handleClick, toggleSideNav  } = this.props;
     return (
@@ -35,7 +30,7 @@ class SideNav extends React.Component {
           </div>
 
           <h4 className="nav-tool-title">My Groups</h4>
-          {user.group && user.group.id ? (
+          {user && user.group ? (
               <div id="nav-group">
                 {groups.map((group) => (
                   <div

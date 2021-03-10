@@ -6,6 +6,8 @@ import "./UserHome.css";
 import { fetchUserTasksThunk } from "../../store/tasks";
 import { fetchGroupsThunk } from "../../store/allGroups";
 // import { format } from "date-fns";
+
+//TODO: Move pwa install button to settings page.
 // import '@pwabuilder/pwainstall'
 
 class UserHome extends React.Component {

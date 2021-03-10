@@ -3,9 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="/favicon.ico" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
     <meta name="theme-color" content="#f2afa6" />
     <meta name="description" content="Planningo" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -31,6 +32,8 @@
         margin: 0;
         padding: 0;
         background-color: #fefde9;
+        height: 100%;
+        /* overflow: hidden; */
       }
 
       a {
@@ -40,11 +43,13 @@
       input,
       textarea {
         font-family: "Roboto", sans-serif;
+        font-size: 16px;
       }
+
+
     </style>
 
     <title>Planningo</title>
-
 
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
     <link
@@ -61,7 +66,7 @@
       />
     </noscript>
     <script defer src="/bundle.js"></script>
-
+    <script type="module" src="/pwabuilder-sw-register.js"></script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>

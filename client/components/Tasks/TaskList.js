@@ -15,6 +15,7 @@ import { fetchTasksThunk, removeTaskThunk } from "../../store/tasks";
 import {   FaPlusSquare, FaCheckCircle, FaTrashAlt} from 'react-icons/fa'
 import { format } from "date-fns";
 
+//TODO: FIGURE OUT WHICH PART OF THIS COMPONENT IS MAKING THE PAGE SIZE BIGGER
 class TaskList extends React.Component {
   constructor(props) {
     super(props);
