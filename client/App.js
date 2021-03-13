@@ -15,9 +15,11 @@ class App extends React.Component {
     };
     this.toggleSideNav = this.toggleSideNav.bind(this);
   }
+
   toggleSideNav() {
     this.setState({ sideNavOpen: !this.state.sideNavOpen });
   }
+
   render() {
     return (
       <div className="app-wrap">

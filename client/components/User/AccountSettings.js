@@ -6,11 +6,7 @@ import { updateUserThunk, updatePasswordThunk } from "../../store/user";
 import { fetchGroupsThunk } from "../../store/allGroups";
 import "./accountsettings.css";
 import {
-  FaEnvelope,
-  FaKey,
-  FaUserCircle,
   FaArrowLeft,
-  FaArrowRight,
 } from "react-icons/fa";
 
 class AccountSettings extends Component {

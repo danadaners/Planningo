@@ -33,26 +33,7 @@ router.get("/", async (req, res, next) => {
 //GET single group
 router.get("/:groupId", async (req, res, next) => {
   try {
-    const group = await Group.findByPk(req.params.groupId, {
-      include: [
-        {
-          model: User,
-        },
-        {
-          model: Task,
-          include: {
-            model: User,
-            attributes: ["id"],
-          },
-          include: {
-            model: Category,
-          },
-        },
-        {
-          model: Category,
-        },
-      ],
-    });
+    const group = await Group.findByPk(req.params.groupId);
     res.json(group);
   } catch (err) {
     next(err);

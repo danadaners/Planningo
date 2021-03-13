@@ -7,7 +7,6 @@ import {
   addShoppingItemThunk,
 } from "../../store/tasks";
 import "./taskmodal.css";
-import { Link } from "react-router-dom";
 import KeyboardDatePickerTab from "../Calendar/DatePicker";
 import {  FaTimes} from 'react-icons/fa'
 import { fetchGroupsThunk } from "../../store/allGroups";
@@ -15,7 +14,6 @@ import { fetchGroupsThunk } from "../../store/allGroups";
 class CreateTaskModal extends Component {
   constructor(props) {
     super(props);
-    //modal depends on whether path name ends in /tasks or /shoppinglist
     let path = window.location.pathname;
     let part = path.split("/").pop();
     this.state = {
@@ -183,13 +181,15 @@ class CreateTaskModal extends Component {
                 </div>
               </div>
               {<div> {this.state.error} </div>}
+              {this.modaltype === "tasks"?
               <div id="choose-date">
                 Due By:
                 <KeyboardDatePickerTab
                   selectedDate={this.state.selectedDate}
                   handleDateChange={this.handleDateChange}
                 />
-              </div>
+              </div> : null }
+
               <button type="submit" id="modal-submit-button">
                 Add
               </button>
