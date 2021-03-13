@@ -54,7 +54,7 @@ class ShoppingList extends React.Component {
           <div className="task-box-body">
             <div id="task-box-categories">Categories</div>
 
-            {/* LIST OF TASKS */}
+        //TODO: DISPLAY SHOPPING CATEGORIES
             <div id="task-box-list">
               {tasks && tasks.length
                 ? tasks.map((task) => (

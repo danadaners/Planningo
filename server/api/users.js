@@ -26,7 +26,7 @@ router.post("/", async (req, res, next) => {
 router.get("/", isAdmin, async (req, res, next) => {
   try {
     const users = await User.findAll({
-      attributes: ["id", "firstName", "lastName", "email", "isAdmin", "groupdId"],
+      attributes: ["id", "firstName", "lastName", "email", "isAdmin", "groupId"],
       // include: {
       //   model: Group,
       // },

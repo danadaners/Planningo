@@ -28,3 +28,7 @@
   text-align: center;
   margin: 40px;
 }
+
+.account-options a:visited {
+  color: white;
+}

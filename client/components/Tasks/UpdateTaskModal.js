@@ -112,37 +112,6 @@ class UpdateTaskModal extends Component {
               </div>
 
               <div id="group-category-wrap">
-                <div id="modal-group-wrap">
-                  <label htmlFor="groupId">Select Group:</label>
-                  {!this.props.groups.length ? (
-                    "You are not a part of any groups."
-                  ) : (
-                    <div id="select-group">
-                      {this.props.groups.map((group) => (
-                        <div
-                          key={group.id}
-                          className={
-                            this.state.groupId === group.id
-                              ? "each-select-group selected"
-                              : "each-select-group"
-                          }
-                          onClick={() => {
-                            this.setState({
-                              groupId: group.id,
-                              categoryId: null,
-                            });
-                          }}
-                        >
-                          <img
-                            src={group.imageUrl}
-                            className="choose-group-image"
-                          ></img>
-                          {group.name}
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
                 <div id="modal-category-wrap">
                   <label htmlFor="categoryId">Category:</label>
                   <select

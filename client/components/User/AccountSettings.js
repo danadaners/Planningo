@@ -42,7 +42,6 @@ class AccountSettings extends Component {
 
     return (
       <div className="account-settings-wrapper">
-        <div> 
           <div className="account-settings-header">PERSONAL INFO:</div>
 
           {this.state.formStatus ? (
@@ -148,7 +147,6 @@ class AccountSettings extends Component {
               </div>
             </div>
           )}
-        </div>
       </div>
     );
   }

@@ -5,7 +5,6 @@ const SET_SINGLE_GROUP = "SET_SINGLE_GROUP";
 const ADD_GROUP_TASK = "ADD_GROUP_TASK";
 
 //ACTION CREATORS
-
 export const setSingleGroup = (group) => {
   return {
     type: SET_SINGLE_GROUP,
@@ -16,7 +15,6 @@ export const setSingleGroup = (group) => {
 const addGroupTask = (task) => ({ type: ADD_GROUP_TASK, task });
 
 //THUNK CREATORS
-
 export const fetchSingleGroup = (groupId) => {
   return async (dispatch) => {
     try {
