@@ -35,7 +35,7 @@ class SideNav extends React.Component {
           </div>
 
           <h4 className="nav-tool-title">My Groups</h4>
-          {user.group && user.group.id ? (
+          {groups && groups.length ? (
               <div id="nav-group">
                 {groups.map((group) => (
                   <div
