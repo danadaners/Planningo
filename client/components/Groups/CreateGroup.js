@@ -4,6 +4,7 @@ import { Redirect } from "react-router-dom";
 import { addGroupThunk } from "../../store/allGroups";
 import "./creategroup.css";
 import MiscIcons from "../Images/MiscIcons";
+//TODO: Optimize images in this
 
 class CreateGroup extends React.Component {
   constructor() {

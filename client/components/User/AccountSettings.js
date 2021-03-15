@@ -6,11 +6,7 @@ import { updateUserThunk, updatePasswordThunk } from "../../store/user";
 import { fetchGroupsThunk } from "../../store/allGroups";
 import "./accountsettings.css";
 import {
-  FaEnvelope,
-  FaKey,
-  FaUserCircle,
   FaArrowLeft,
-  FaArrowRight,
 } from "react-icons/fa";
 
 class AccountSettings extends Component {
@@ -42,7 +38,6 @@ class AccountSettings extends Component {
 
     return (
       <div className="account-settings-wrapper">
-        <div> 
           <div className="account-settings-header">PERSONAL INFO:</div>
 
           {this.state.formStatus ? (
@@ -148,7 +143,6 @@ class AccountSettings extends Component {
               </div>
             </div>
           )}
-        </div>
       </div>
     );
   }

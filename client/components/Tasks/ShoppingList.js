@@ -7,6 +7,7 @@ import UpdateTaskModal from "./UpdateTaskModal";
 import { fetchShoppingItemsThunk, removeTaskThunk } from "../../store/tasks";
 import {   FaPlusSquare, FaCheckCircle, FaTrashAlt } from 'react-icons/fa'
 import { format } from "date-fns";
+        //TODO: DISPLAY SHOPPING CATEGORIES
 
 class ShoppingList extends React.Component {
   constructor(props) {
@@ -53,8 +54,6 @@ class ShoppingList extends React.Component {
           <div className="task-box-header">Shopping List</div>
           <div className="task-box-body">
             <div id="task-box-categories">Categories</div>
-
-            {/* LIST OF TASKS */}
             <div id="task-box-list">
               {tasks && tasks.length
                 ? tasks.map((task) => (

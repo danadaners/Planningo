@@ -7,7 +7,6 @@ import {
   addShoppingItemThunk,
 } from "../../store/tasks";
 import "./taskmodal.css";
-import { Link } from "react-router-dom";
 import KeyboardDatePickerTab from "../Calendar/DatePicker";
 import {  FaTimes} from 'react-icons/fa'
 import { fetchGroupsThunk } from "../../store/allGroups";
@@ -15,7 +14,6 @@ import { fetchGroupsThunk } from "../../store/allGroups";
 class CreateTaskModal extends Component {
   constructor(props) {
     super(props);
-    //modal depends on whether path name ends in /tasks or /shoppinglist
     let path = window.location.pathname;
     let part = path.split("/").pop();
     this.state = {
@@ -151,40 +149,7 @@ class CreateTaskModal extends Component {
               ) : null}
 
               <div id="group-category-wrap">
-                <div id="modal-group-wrap">
-                  <label htmlFor="groupId">Assign to Group:</label>
-                  {!this.props.groups.length ? (
-                    <div id="createjoinmodal">You are not a part of any groups.
-                    <Link to="/groups/create"> Create or Join one to start creating tasks.</Link></div>
-                  ) : (
-                    <div id="select-group">
-                      {this.props.groups.map((group) => (
-                        <div
-                          key={group.id}
-                          className={
-                            this.state.groupId === group.id
-                              ? "each-select-group selected"
-                              : "each-select-group"
-                          }
 
-                          onClick={() => {
-                            this.setState({
-                              group: group,
-                              groupId: group.id,
-                              categoryId: null,
-                            });
-                          }}
-                        >
-                          <img
-                            src={group.imageUrl}
-                            className="choose-group-image"
-                          ></img>
-                          {group.name}
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
                 <div id="modal-category-wrap">
                   <label htmlFor="categoryId">Category:</label>
 
@@ -216,13 +181,15 @@ class CreateTaskModal extends Component {
                 </div>
               </div>
               {<div> {this.state.error} </div>}
+              {this.modaltype === "tasks"?
               <div id="choose-date">
                 Due By:
                 <KeyboardDatePickerTab
                   selectedDate={this.state.selectedDate}
                   handleDateChange={this.handleDateChange}
                 />
-              </div>
+              </div> : null }
+
               <button type="submit" id="modal-submit-button">
                 Add
               </button>

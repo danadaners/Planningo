@@ -1,0 +1,12 @@
+/* About Page */
+.about-wrapper{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+
+.about-intro{
+  background-color: white;
+}

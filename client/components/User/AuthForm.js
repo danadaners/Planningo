@@ -203,6 +203,7 @@ class AuthForm extends React.Component {
               )}
             </div>
           </div>
+          <Link to="/about">New To Planningo?</Link>
         </div>
       </div>
     );

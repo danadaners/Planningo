@@ -1,6 +1,6 @@
 .account-settings-wrapper {
-  min-width: 45%;
-  min-height: 44%;
+  width: 45%;
+  height: 44%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -26,8 +26,7 @@
 
 .account-settings-header {
   text-align: center;
-  min-width: 100%;
-  margin-right: 240px;
+  width: 100%;
   line-height: 50px;
   background-color: pink;
   font-size: 25px;
@@ -94,8 +93,4 @@
   width: max-content;
   padding: 2%;
   cursor: pointer;
-}
-
-a:visited {
-  color: white;
 }

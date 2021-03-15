@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { FaTimes } from 'react-icons/fa';
 import { updateGroupTaskThunk, fetchTasksThunk } from "../../store/tasks";
-import "../Tasks/taskmodal.css";
+import "./taskmodal.css";
 import { fetchSingleGroupTasks } from "../../store/singleGroup";
 import KeyboardDatePickerTab from "../Calendar/DatePicker";
 
