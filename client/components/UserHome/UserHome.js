@@ -7,8 +7,7 @@ import { fetchUserTasksThunk } from "../../store/tasks";
 import { fetchGroupsThunk } from "../../store/allGroups";
 import format from 'date-fns/format'
 
-//TODO: Move pwa install button to settings page.
-// import '@pwabuilder/pwainstall'
+
 /*
 * TODO: show basic data vis
 * Show today's tasks
@@ -16,6 +15,10 @@ import format from 'date-fns/format'
 * Show overdue tasks
 * Show newly UPDATED tasks
 * show NEW tasks
+* show USER'S TASKS
+
+*DONT SHOW SHOPPING LIST? OR AT LEAST SEPARATE TODOS AND SHOPPING
+
 */
 
 class UserHome extends React.Component {
@@ -30,9 +33,7 @@ class UserHome extends React.Component {
   }
 
   render() {
-    const { firstName } = this.props;
-    const { tasks } = this.props;
-
+    const { firstName, tasks } = this.props;
     const today = format(new Date(),"yyyy-MM-dd")
 
     return (
@@ -61,6 +62,7 @@ class UserHome extends React.Component {
         <div className="tasks-link">
           <Link to="/tasks">Go to my tasks</Link>
         </div>
+
       </div>
     );
   }
@@ -76,7 +78,7 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch) => ({
   fetchUserTasks: () => dispatch(fetchUserTasksThunk()),
-  fetchGroups: (userId) => dispatch(fetchGroupsThunk(userId)),
+  fetchGroups: (userId) => dispatch(fetchGroupsThunk(userId))
 });
 export default connect(mapState, mapDispatch)(UserHome);
 

@@ -114,7 +114,6 @@ export const addGroupItemThunk = (groupId, task) => async (dispatch) => {
     dispatch(addGroupTask(newGroupTask));
 };
 
-//INITIAL STATE
 const initialState = {};
 
 //REDUCER

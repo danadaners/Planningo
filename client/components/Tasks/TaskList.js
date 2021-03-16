@@ -14,7 +14,12 @@ import { format } from "date-fns";
 import "./grouptasks.css";
 import "./Tasks.css";
 
-//TODO: filters
+//TODO: filters - show/hide completed tasks, sort by users (should already be sorted by date)
+//TODO: show "overdue" in red
+//TODO: single task view
+//TODO: modals for deleting task and comppleting
+//TODO: user permissions for tasks? like completing and deleting
+//TODO: add CREATED BY (userId) in tasks.
 
 class TaskList extends React.Component {
   constructor(props) {

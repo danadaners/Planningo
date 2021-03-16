@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter, Route, Switch } from "react-router-dom";
 import PropTypes from "prop-types";
+//TODO: Redirect to create/join group if not in group
 
 import {
   UserHome,
@@ -23,7 +24,7 @@ class Routes extends Component {
   }
 
   render() {
-    const { isLoggedIn } = this.props;
+    const { isLoggedIn,  } = this.props;
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
@@ -35,12 +36,14 @@ class Routes extends Component {
             {/* Routes placed here are only available after logging in */}
 
             <Route exact path={["/home", "/"]} component={UserHome} />
+
             <Route exact path="/account" component={Account} />
             <Route exact path="/account/settings" component={AccountSettings} />
             <Route path="/calendar" component={AppCalendar} />
             <Route exact path="/tasks" component={TaskList} />
             <Route path="/shoppinglist" component={ShoppingList} />
-            <Route exact path="/groups/create" component={CreateGroup} />
+
+           { <Route exact path="/groups/create" component={CreateGroup} />}
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
@@ -53,6 +56,7 @@ class Routes extends Component {
 const mapState = (state) => {
   return {
     isLoggedIn: !!state.user.id,
+    hasGroup: !!state.user.groupId
   };
 };
 
