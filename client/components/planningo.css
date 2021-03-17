@@ -1,12 +1,178 @@
 /* About Page */
-.about-wrapper{
+.about-wrapper {
   height: 100%;
+  max-width: 100vw;
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-content: center;
+  align-items: center;
+  overflow-y: auto;
+  background-color: #f1e2d2;
+}
+#linkhome{
+  margin-top: 50px;
+  margin-bottom: 40px;
+  width: 100%;
 }
 
-.about-intro{
+#linkhome a{
+  color: black;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.2em;
+  text-decoration: underline;
+  display: flex;
+  align-items: center;
+  padding-left: 5vw;
+}
+
+.about-intro {
+  background-color: #f1e2d2;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-height: 85vh;
+}
+
+.about-intro img {
+  max-width: 600px;
+  height: auto;
+}
+
+.about-intro p {
+  width: 60%;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.5em;
+}
+
+.about-intro svg{
+  font-size: 5em;
+  color: #f2afa6;
+}
+
+.about-intro h1 {
+  margin-bottom: 40px;
+  font-family: "Poppins", sans-serif;
+  font-size: 3em;
+}
+
+.about-wrapper .body {
   background-color: white;
+  display: grid;
+  width: 100%;
+  grid-template: 1fr 1fr / 1fr 1fr;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-height: 50vh;
+  max-height: 800px;
+  justify-content: space-evenly;
+  text-align: center;
+}
+
+.step p{
+  font-family: "Montserrat", sans-serif;
+  letter-spacing: 1px;
+  max-width: 90%;
+}
+
+.step h3 {
+  font-size: 1.5em;
+  margin: 30px 0 20px 0;
+  font-family: "Sniglet", cursive;
+  max-width: 80%;
+}
+
+.step img {
+  width: 50%;
+  max-width: 350px;
+  height: auto;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.step.list {
+  background-color: #c2deae;
+}
+
+.step.checktask {
+  background-color: powderblue;
+}
+
+.step.newtask {
+  background-color: #ffc573;
+}
+
+.step.calendar {
+  background-color: lightgray;
+}
+
+.step.calendar img {
+  width: 40%;
+  max-width: 300px;
+  height: auto;
+}
+
+.start{
+  background-color: #ff7290;
+  min-height: 20vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.start a{
+  font-family: "Poppins", sans-serif;
+  font-size: 2em;
+  color: black;
+}
+
+@media only screen and (max-width: 600px) {
+  .about-wrapper .body {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #linkhome a{
+    font-size: 0.8em;
+    padding-left: 2vw;
+  }
+
+  .about-intro img{
+    max-width: 90vw;
+  }
+  .about-intro svg{
+    font-size: 3em;
+  }
+
+  .about-intro{
+    min-height: 90vh;
+    justify-content: space-evenly;
+  }
+
+  .about-intro p {
+    font-size: 1em;
+  }
+
+  .about-intro h1 {
+    font-size: 1.5em;
+    margin-bottom: 5px;
+  }
+
+  .step h3 {
+    font-size: 1.2em;
+  }
+
+  .step p{
+    font-size: 0.8em;
+  }
+  .start a{
+    font-size: 1.5em;
+  }
 }

@@ -11,7 +11,6 @@ class SideNav extends React.Component {
     super(props);
   }
 
-
   componentDidMount() {
     if(this.props.isLoggedIn){
       this.props.fetchGroups(this.props.userId);
@@ -26,7 +25,7 @@ class SideNav extends React.Component {
             <Link to="/account" onClick={toggleSideNav}>
               <img src={user.avatarUrl} id="user-icon" style={{backgroundColor: user.color}} width={80} height={80}></img>
             </Link>
-            {user.firstName}{user.lastName}
+            {user.firstName}{" "}{user.lastName}
           </div>
 
           <h4 className="nav-tool-title">My Group</h4>
