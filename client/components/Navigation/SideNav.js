@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { logout } from "../../store";
 import PropTypes from "prop-types";
 import "./sidenav.css";
-import { fetchGroupsThunk} from "../../store/allGroups";
+import { fetchSingleGroup } from "../../store/singleGroup";
 
 class SideNav extends React.Component {
   constructor(props) {
@@ -13,7 +13,7 @@ class SideNav extends React.Component {
 
   componentDidMount() {
     if(this.props.isLoggedIn){
-      this.props.fetchGroups(this.props.userId);
+      this.props.fetchGroup(this.props.user.groupId);
     }
   }
   render() {
@@ -53,11 +53,11 @@ class SideNav extends React.Component {
 const mapState = (state) => ({
   user: state.user,
   isLoggedIn: !!state.user.id,
-  group: state.groups[0],
+  group: state.singleGroup
 });
 
 const mapDispatch = (dispatch) => ({
-  fetchGroups: (userId) => dispatch(fetchGroupsThunk(userId)),
+  fetchGroup: (groupId) => dispatch(fetchSingleGroup(groupId)),
   handleClick: () => dispatch(logout()),
 });
 

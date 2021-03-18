@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import "./UserHome.css";
 import { fetchUserTasksThunk } from "../../store/tasks";
-import { fetchGroupsThunk } from "../../store/allGroups";
+import { fetchSingleGroup } from "../../store/singleGroup";
 import format from 'date-fns/format'
 
 
@@ -29,7 +29,7 @@ class UserHome extends React.Component {
 
   componentDidMount() {
     this.props.fetchUserTasks();
-    this.props.fetchGroups(this.props.userId);
+    this.props.fetchGroup(this.props.groupId);
   }
 
   render() {
@@ -69,16 +69,16 @@ class UserHome extends React.Component {
 }
 const mapState = (state) => {
   return {
-    groups: state.groups,
     user: state.user,
     firstName: state.user.firstName,
     tasks: state.tasks,
+    groupId: state.user.groupId
   };
 };
 
 const mapDispatch = (dispatch) => ({
   fetchUserTasks: () => dispatch(fetchUserTasksThunk()),
-  fetchGroups: (userId) => dispatch(fetchGroupsThunk(userId))
+  fetchGroup: (groupId) => dispatch(fetchSingleGroup(groupId)),
 });
 export default connect(mapState, mapDispatch)(UserHome);
 

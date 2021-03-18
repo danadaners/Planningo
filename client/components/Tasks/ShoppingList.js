@@ -4,6 +4,7 @@ import { updateTaskCompletion } from "../../store/singletask";
 import "./Tasks.css";
 import CreateTaskModal from "./CreateTaskModal";
 import UpdateTaskModal from "./UpdateTaskModal";
+import { fetchSingleGroup } from "../../store/singleGroup";
 import { fetchShoppingItemsThunk, removeTaskThunk } from "../../store/tasks";
 import {   FaPlusSquare, FaCheckCircle, FaTrashAlt } from 'react-icons/fa'
 import { format } from "date-fns";
@@ -21,6 +22,7 @@ class ShoppingList extends React.Component {
   }
   componentDidMount() {
     this.props.fetchItems();
+    this.props.fetchGroup(this.props.groupId);
   }
 
   async handleDelete(id) {
@@ -162,9 +164,11 @@ class ShoppingList extends React.Component {
 const mapState = (state) => ({
   tasks: state.tasks,
   userId: state.user.id,
+  groupId: state.user.groupId
 });
 
 const mapDispatch = (dispatch) => ({
+  fetchGroup: (groupId) => dispatch(fetchSingleGroup(groupId)),
   fetchItems: () => dispatch(fetchShoppingItemsThunk()),
   deleteItem: (taskId) => dispatch(removeTaskThunk(taskId)),
   updateTaskCompletion: (taskId, isCompleted) =>
