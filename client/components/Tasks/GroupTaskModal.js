@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchSingleGroup, addGroupTaskThunk } from "../../store/singleGroup";
+import { fetchSingleGroupTasks } from "../../store/singleGroup";
+import { addGroupTaskThunk } from "../../store/singleGroup";
 import { addGroupShoppingItemThunk } from "../../store/tasks";
 import "./taskmodal.css";
 import { FaTimes } from 'react-icons/fa';
@@ -28,7 +29,7 @@ class GroupTaskModal extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchGroup(this.props.groupId);
+    this.props.fetchGroupTasks(this.props.groupId);
   }
 
   handleDateChange(newValue) {
@@ -62,7 +63,7 @@ class GroupTaskModal extends Component {
         categoryId: null,
         selectedDate: new Date(),
       });
-      await this.props.fetchGroup(this.props.groupId);
+      await this.props.fetchGroupTasks(this.props.groupId);
       this.props.onClose();
     } catch (err) {
       console.log("error creating task", err);
@@ -212,7 +213,7 @@ const mapState = (state) => ({
 });
 
 const mapDispatch = (dispatch) => ({
-  fetchGroup: (groupId) => dispatch(fetchSingleGroup(groupId)),
+  fetchGroupTasks: (groupId) => dispatch(fetchSingleGroupTasks(groupId)),
   addGroupTask: (groupId, task) => dispatch(addGroupTaskThunk(groupId, task)),
   updateTask: (task) => dispatch(updateSingleTask(task)),
   addGroupShoppingItem: (task, groupId) =>
