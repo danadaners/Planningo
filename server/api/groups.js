@@ -260,7 +260,7 @@ router.post("/:groupId/tasks", async (req, res, next) => {
   }
 });
 
-// POST /api/groups/:groupId/tasks
+// PUT /api/groups/:groupId/tasks
 router.put("/:groupId/tasks", async (req, res, next) => {
   try {
     const task = await Task.findByPk(req.body.taskId);

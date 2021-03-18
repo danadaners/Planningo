@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import GroupTaskModal from "./GroupTaskModal";
+import { fetchSingleGroup } from "../../store/singleGroup";
 import UpdateGroupTaskModal from "./UpdateGroupTask";
 import { removeTaskThunk } from "../../store/tasks";
 import { updateTaskCompletion } from "../../store/singletask";
@@ -33,6 +34,7 @@ class TaskList extends React.Component {
   }
 
   componentDidMount() {
+    this.props.fetchGroupTasks(this.props.groupId);
     this.props.fetchGroup(this.props.groupId);
   }
 
@@ -44,7 +46,7 @@ class TaskList extends React.Component {
 
   async handleDelete(id) {
     await this.props.deleteTask(id);
-    this.props.fetchGroup(this.props.groupId);
+    this.props.fetchGroupTasks(this.props.groupId);
   }
 
   async toggleCompleted(taskId, isCompleted) {
@@ -56,7 +58,7 @@ class TaskList extends React.Component {
         await this.props.updateTaskCompletion(taskId, !isCompleted);
         await this.props.removePoints(taskId);
       }
-      this.props.fetchGroup(this.props.match.params.groupId);
+      this.props.fetchGroupTasks(this.props.groupId);
     } catch (err) {
       console.error(err);
     }
@@ -74,6 +76,7 @@ class TaskList extends React.Component {
     let tasks = this.props.group.tasks;
     let group = this.props.group;
     let categories = this.props.group.categories;
+
     return (
       <div className="task-wrapper">
         {this.state.show === true || this.state.showTask === true ? (
@@ -215,12 +218,14 @@ class TaskList extends React.Component {
 }
 
 const mapState = (state) => ({
+  userId: state.user.id,
   group: state.singleGroup,
   groupId: state.user.groupId
 });
 
 const mapDispatch = (dispatch) => ({
-  fetchGroup: (groupId) => dispatch(fetchSingleGroupTasks(groupId)),
+  fetchGroupTasks: (groupId) => dispatch(fetchSingleGroupTasks(groupId)),
+  fetchGroup: (groupId) => dispatch(fetchSingleGroup(groupId)),
   deleteTask: (taskId) => dispatch(removeTaskThunk(taskId)),
   updateTaskCompletion: (taskId, isCompleted) =>
     dispatch(updateTaskCompletion(taskId, isCompleted)),

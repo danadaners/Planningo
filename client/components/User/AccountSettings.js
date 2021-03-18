@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { me } from "../../store";
 import { updateUserThunk, updatePasswordThunk } from "../../store/user";
-import { fetchGroupsThunk } from "../../store/allGroups";
+import { fetchSingleGroup } from "../../store/singleGroup";
 import "./accountsettings.css";
 import {
   FaArrowLeft,
@@ -21,7 +21,7 @@ class AccountSettings extends Component {
 
   componentDidMount() {
     this.props.loadInitialData();
-    this.props.fetchGroups(this.props.userId);
+    this.props.fetchGroup(this.props.groupId);
   }
   toggleFormStatus() {
     this.setState({ formStatus: !this.state.formStatus });
@@ -150,6 +150,7 @@ class AccountSettings extends Component {
 
 const mapState = (state) => {
   return {
+    groupId: state.user.groupId,
     groups: state.groups,
     user: state.user,
   };
@@ -166,7 +167,7 @@ const mapDispatch = (dispatch) => {
     updatePassword(userId, oldPassword, newPassword) {
       dispatch(updatePasswordThunk(userId, oldPassword, newPassword));
     },
-    fetchGroups: (userId) => dispatch(fetchGroupsThunk(userId)),
+    fetchGroup: (groupId) => dispatch(fetchSingleGroup(groupId)),
   };
 };
 

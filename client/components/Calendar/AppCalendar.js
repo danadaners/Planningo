@@ -1,7 +1,7 @@
 import React from "react";
 import "./calendar.css";
 import { connect } from "react-redux";
-import { fetchGroupsThunk } from "../../store/allGroups";
+import { fetchSingleGroup } from "../../store/singleGroup";
 import { Calendar, dateFnsLocalizer } from "react-big-calendar";
 import format from "date-fns/format";
 import parse from "date-fns/parse";
@@ -27,7 +27,7 @@ class AppCalendar extends React.Component {
 
   componentDidMount() {
     this.props.fetchTasks();
-    this.props.fetchGroups(this.props.userId);
+    this.props.fetchGroup(this.props.groupId);
   }
 
   render() {
@@ -68,7 +68,7 @@ class AppCalendar extends React.Component {
 }
 
 const mapState = (state) => ({
-  groups: state.groups,
+  groupId: state.user.groupId,
   userTasks: state.tasks,
   userId: state.user.id,
 });
@@ -76,7 +76,7 @@ const mapState = (state) => ({
 const mapDispatch = (dispatch) => ({
   fetchTasks: () => dispatch(fetchTasksThunk()),
   deleteTask: (taskId) => dispatch(removeTaskThunk(taskId)),
-  fetchGroups: (userId) => dispatch(fetchGroupsThunk(userId)),
+  fetchGroup: (groupId) => dispatch(fetchSingleGroup(groupId)),
 });
 
 export default connect(mapState, mapDispatch)(AppCalendar);
