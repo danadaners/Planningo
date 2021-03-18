@@ -119,7 +119,7 @@ class TaskList extends React.Component {
                     .map((task) => (
                       <div key={task.id} className="singletask">
                         <div
-                          id="catcolor"
+                          className="category-color"
                           style={{
                             backgroundColor: task.category
                               ? task.category.color
@@ -162,6 +162,7 @@ class TaskList extends React.Component {
                           </div>
 
                           {/* {task.category.name ? task.category.name : "No Category"} */}
+                        
                           {task.points > 0 ? (
                             <div id="numberpoints">
                               {task.points}

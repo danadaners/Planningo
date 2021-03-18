@@ -33,7 +33,13 @@ router.get("/", async (req, res, next) => {
 //GET single group
 router.get("/:groupId", async (req, res, next) => {
   try {
-    const group = await Group.findByPk(req.params.groupId);
+    const group = await Group.findByPk(req.params.groupId, {
+      include: [
+        {
+          model: Category,
+        },
+      ]
+    });
     res.json(group);
   } catch (err) {
     next(err);
@@ -179,6 +185,9 @@ router.get("/:groupId/tasks", async (req, res, next) => {
             isShopping: false,
           },
           required: false,
+          include: {
+            model: Category,
+          },
         },
         {
           model: Category,
@@ -223,6 +232,7 @@ router.get("/:groupId/shopping", async (req, res, next) => {
     next(err);
   }
 });
+
 //POST /api/groups/:groupId/shopping
 router.post("/:groupId/shopping", async (req, res, next) => {
   try {
@@ -240,6 +250,7 @@ router.post("/:groupId/shopping", async (req, res, next) => {
     next(error);
   }
 });
+
 // POST /api/groups/:groupId/tasks
 router.post("/:groupId/tasks", async (req, res, next) => {
   try {

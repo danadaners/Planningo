@@ -19,13 +19,11 @@
   cursor: pointer;
   opacity: 0.7;
   filter: grayscale(0.5);
-
 }
 
 .each-category-wrap:hover {
   opacity: 1;
   filter: none;
-
 }
 #category-icon-wrap {
   display: flex;
@@ -48,6 +46,11 @@
   height: 60px;
   background-color: orange;
   border-radius: 50%;
+}
+
+.category-color {
+  width: 10px;
+  height: 100%;
 }
 
 /* for mobile devices */
@@ -81,5 +84,4 @@
     width: 35px;
     height: 35px;
   }
-
 }
