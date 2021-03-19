@@ -125,7 +125,7 @@ class TaskList extends React.Component {
                     .map((task) => (
                       <div key={task.id} className="singletask">
                         <div
-                          id="catcolor"
+                          className="category-color"
                           style={{
                             backgroundColor: task.category
                               ? task.category.color

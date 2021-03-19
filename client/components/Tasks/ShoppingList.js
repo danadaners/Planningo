@@ -31,7 +31,6 @@ class ShoppingList extends React.Component {
 
   async toggleCompleted(taskId, isCompleted) {
     await this.props.updateTaskCompletion(taskId, !isCompleted);
-
     this.props.fetchItems();
   }
 
@@ -45,6 +44,9 @@ class ShoppingList extends React.Component {
 
   render() {
     let { tasks } = this.props.tasks;
+    let categories = this.props.group.categories;
+
+    console.log('CAT!!!!!', this.props.group)
 
     return (
       <div className="task-wrapper">
@@ -52,9 +54,31 @@ class ShoppingList extends React.Component {
           <div id="darken-page"></div>
         ) : null}
         <div id="task-box">
+
           <div className="task-box-header">Shopping List</div>
           <div className="task-box-body">
-            <div id="task-box-categories">Categories</div>
+            <div id="task-box-categories">
+              <div id="category-title">Categories</div>
+              {categories
+                ? categories
+                .filter((category) => category.name === "Grocery")
+                .map((category) => (
+                    <div key={category.id} className="each-category-wrap">
+                      <div
+                        id="category-icon-wrap"
+                        style={{ backgroundColor: category.color }}
+                      >
+                        <img
+                          src={category.imageUrl}
+                          className="category-icon"
+                        ></img>
+                      </div>
+                      {category.name}
+                    </div>
+                  ))
+                : null}
+            </div>
+
             <div id="task-box-list">
               {tasks && tasks.length
                 ? tasks.map((task) => (
@@ -89,7 +113,22 @@ class ShoppingList extends React.Component {
                         onClick={(e) => this.showTaskModal(e, task.id)}
                         id="task-name-click"
                       >
+
+                        <div id="name-date-wrap">
+                          {task.name}
+                          {/* <p id="date-created">
+                            added {format(new Date(task.createdAt), "MMM d")}
+                          </p> */}
+                          <p id="date-created">
+                            {format(
+                              new Date(`${task.start}T12:00:00.000Z`),
+                              "MMM d"
+                            )}
+                          </p>
+                        </div>
+
                         <div id="name-date-wrap">{task.name}</div>
+
                       </a>
 
                       <UpdateGroceryModal
@@ -136,6 +175,7 @@ class ShoppingList extends React.Component {
 }
 
 const mapState = (state) => ({
+  group: state.singleGroup,
   tasks: state.tasks,
   userId: state.user.id,
   groupId: state.user.groupId,
