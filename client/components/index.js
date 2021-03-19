@@ -15,4 +15,5 @@ export { default as ShoppingList } from "./Tasks/ShoppingList";
 //groups
 export { default as CreateGroup } from "./Groups/CreateGroup";
 export {default as MyGroup} from "./Groups/MyGroup"
+export {default as EditUsers} from "./Groups/EditUsers"
 //data vis

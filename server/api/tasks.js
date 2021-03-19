@@ -141,20 +141,13 @@ router.patch("/:taskId", async (req, res, next) => {
   try {
     const task = await Task.findByPk(req.params.taskId);
     const { updatedFields } = req.body;
-    // const userTask = await User_Task.findOne({
-    //   where: {
-    //     taskId: req.params.taskId,
-    //   },
-    // });
+
     const user = await User.findOne({
       where: {
         id: task.userId,
       },
     });
 
-    user.update({
-      tasksCompleted: (user.tasksCompleted += 1),
-    });
     task.update({ ...updatedFields });
     res.sendStatus(204);
   } catch (err) {

@@ -17,7 +17,7 @@ class SideNav extends React.Component {
     }
   }
   render() {
-    let { user, group, handleClick, toggleSideNav  } = this.props;
+    let { user, group, handleClick, toggleSideNav } = this.props;
     return (
       <div className="side-nav-wrapper">
         <div id="nav-user-wrap">

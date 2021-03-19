@@ -6,7 +6,7 @@ import "./taskmodal.css";
 import { fetchSingleGroupTasks } from "../../store/singleGroup";
 import KeyboardDatePickerTab from "../Calendar/DatePicker";
 
-class UpdateGroupTaskModal extends Component {
+class UpdateTaskModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -183,4 +183,4 @@ const mapDispatch = (dispatch) => ({
     dispatch(updateGroupTaskThunk(task, groupId)),
 });
 
-export default connect(mapState, mapDispatch)(UpdateGroupTaskModal);
+export default connect(mapState, mapDispatch)(UpdateTaskModal);

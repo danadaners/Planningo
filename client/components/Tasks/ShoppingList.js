@@ -6,9 +6,8 @@ import CreateTaskModal from "./CreateTaskModal";
 import UpdateGroceryModal from "./UpdateGroceryModal";
 import { fetchSingleGroup } from "../../store/singleGroup";
 import { fetchShoppingItemsThunk, removeTaskThunk } from "../../store/tasks";
-import {   FaPlusSquare, FaCheckCircle, FaTrashAlt } from 'react-icons/fa'
-import { format } from "date-fns";
-        //TODO: DISPLAY SHOPPING CATEGORIES
+import { FaPlusSquare, FaCheckCircle, FaTrashAlt } from "react-icons/fa";
+//TODO: DISPLAY SHOPPING CATEGORIES
 
 class ShoppingList extends React.Component {
   constructor(props) {
@@ -82,7 +81,7 @@ class ShoppingList extends React.Component {
                               : "check-circle incomplete"
                           }
                         >
-                          <FaCheckCircle/>
+                          <FaCheckCircle />
                         </div>
                       </button>
 
@@ -90,32 +89,7 @@ class ShoppingList extends React.Component {
                         onClick={(e) => this.showTaskModal(e, task.id)}
                         id="task-name-click"
                       >
-                        <div id="name-date-wrap">
-                          {task.name}
-                          {/* <p id="date-created">
-                            added {format(new Date(task.createdAt), "MMM d")}
-                          </p> */}
-                          <p id="date-created">
-                            {format(
-                              new Date(`${task.start}T12:00:00.000Z`),
-                              "MMM d"
-                            )}
-                          </p>
-                        </div>
-
-                        {task.category ? (
-                          <div id="singletask-category">
-                            <div
-                              id="singletask-cat-wrap"
-                              style={{ backgroundColor: task.category.color }}
-                            >
-                              <img
-                                src={task.category.imageUrl}
-                                id="task-cat-icon"
-                              ></img>
-                            </div>
-                          </div>
-                        ) : null}
+                        <div id="name-date-wrap">{task.name}</div>
                       </a>
 
                       <UpdateGroceryModal
@@ -128,13 +102,13 @@ class ShoppingList extends React.Component {
                         onClick={() => this.handleDelete(task.id)}
                         className="deleteTask"
                       >
-                        <FaTrashAlt/>
+                        <FaTrashAlt />
                       </button>
                     </div>
                   ))
-                : "You have no tasks"}
+                : null}
             </div>
-            <div id="just-another-layout-div">
+            <div id="filters">
               <div>Filters</div>
             </div>
           </div>
@@ -146,9 +120,9 @@ class ShoppingList extends React.Component {
               className="add-task-button"
             >
               <div id="ahhh">
-                <FaPlusSquare/>
+                <FaPlusSquare />
               </div>
-              Add New Task
+              New Item
             </button>
             <CreateTaskModal
               onClose={(e) => this.showModal(e)}
@@ -164,7 +138,7 @@ class ShoppingList extends React.Component {
 const mapState = (state) => ({
   tasks: state.tasks,
   userId: state.user.id,
-  groupId: state.user.groupId
+  groupId: state.user.groupId,
 });
 
 const mapDispatch = (dispatch) => ({

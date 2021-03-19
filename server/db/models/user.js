@@ -51,10 +51,6 @@ const User = db.define("user", {
   googleId: {
     type: Sequelize.STRING,
   },
-  tasksCompleted: {
-    type: Sequelize.INTEGER,
-    defaultValue: 0,
-  },
   color: {
     type: Sequelize.ENUM(
       "#FFBF00",
