@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import GroupTaskModal from "./GroupTaskModal";
 import { fetchSingleGroup } from "../../store/singleGroup";
-import UpdateGroupTaskModal from "./UpdateGroupTask";
+import UpdateTaskModal from "./UpdateTaskModal";
 import { removeTaskThunk } from "../../store/tasks";
 import { updateTaskCompletion } from "../../store/singletask";
 import { fetchSingleGroupTasks } from "../../store/singleGroup";
@@ -10,7 +10,12 @@ import {
   postCompletedPointsThunk,
   removeCompletedPointsThunk,
 } from "../../store/point";
-import { FaPlusSquare, FaSort, FaCheck, FaTrashAlt, FaCheckCircle } from 'react-icons/fa';
+import {
+  FaPlusSquare,
+  FaSort,
+  FaTrashAlt,
+  FaCheckCircle,
+} from "react-icons/fa";
 import { format } from "date-fns";
 import "./grouptasks.css";
 import "./Tasks.css";
@@ -79,7 +84,7 @@ class TaskList extends React.Component {
 
     return (
       <div className="task-wrapper">
-        {this.state.show === true || this.state.showTask === true ? (
+        {this.state.show || this.state.showTask ? (
           <div id="darken-page"></div>
         ) : null}
         <div id="task-box">
@@ -92,7 +97,6 @@ class TaskList extends React.Component {
           <div className="task-box-body">
             <div id="task-box-categories">
               <div id="category-title">Categories</div>
-              {/* <div className="category-icon-wrap">All</div> */}
 
               {categories
                 ? categories.map((category) => (
@@ -140,7 +144,7 @@ class TaskList extends React.Component {
                                 : "check-circle incomplete"
                             }
                           >
-                            <FaCheckCircle/>
+                            <FaCheckCircle />
                           </div>
                         </button>
 
@@ -150,19 +154,14 @@ class TaskList extends React.Component {
                         >
                           <div id="name-date-wrap">
                             {task.name}
-                            {/* <p id="date-created">
-                            added {format(new Date(task.createdAt), "MMM d")}
-                          </p> */}
                             <p id="date-created">
                               {format(
-                                new Date(`${task.start}T12:00:00.000Z`),
+                                new Date(`${task.end}T12:00:00.000Z`),
                                 "MMM d"
                               )}
                             </p>
                           </div>
 
-                          {/* {task.category.name ? task.category.name : "No Category"} */}
-                        
                           {task.points > 0 ? (
                             <div id="numberpoints">
                               {task.points}
@@ -174,7 +173,7 @@ class TaskList extends React.Component {
                           ) : null}
                         </a>
 
-                        <UpdateGroupTaskModal
+                        <UpdateTaskModal
                           selectedTask={task.id === this.state.taskId}
                           task={task}
                           onClose={(e) => this.showTaskModal(e)}
@@ -186,11 +185,11 @@ class TaskList extends React.Component {
                           onClick={() => this.handleDelete(task.id)}
                           className="deleteTask"
                         >
-                          <FaTrashAlt/>
+                          <FaTrashAlt />
                         </button>
                       </div>
                     ))
-                : "Your group has no tasks"}
+                : null}
             </div>
             <div id="just-another-layout-div"></div>
           </div>
@@ -202,9 +201,9 @@ class TaskList extends React.Component {
               className="add-task-button"
             >
               <div id="ahhh">
-                <FaPlusSquare/>
+                <FaPlusSquare />
               </div>
-              Add New Task
+              New Task
             </button>
             <GroupTaskModal
               groupId={this.props.groupId}
@@ -221,7 +220,7 @@ class TaskList extends React.Component {
 const mapState = (state) => ({
   userId: state.user.id,
   group: state.singleGroup,
-  groupId: state.user.groupId
+  groupId: state.user.groupId,
 });
 
 const mapDispatch = (dispatch) => ({

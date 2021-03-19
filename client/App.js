@@ -1,10 +1,10 @@
 import React from "react";
-import {TopNav, SideNav} from "./components";
+import { TopNav, SideNav } from "./components";
 import Routes from "./routes";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import "./App.css";
-import { FaTimes } from 'react-icons/fa';
+import { FaTimes } from "react-icons/fa";
 
 class App extends React.Component {
   constructor(props) {
@@ -21,9 +21,11 @@ class App extends React.Component {
   }
 
   render() {
+    const { isLoggedIn, hasGroup } = this.props;
+
     return (
       <div className="app-wrap">
-        {this.props.isLoggedIn ? (
+        {isLoggedIn && hasGroup ? (
           <div id="topnav">
             <TopNav
               toggleSideNav={this.toggleSideNav}
@@ -35,13 +37,13 @@ class App extends React.Component {
         <div id="sitebody">
           <div
             className={`sidenav ${
-              this.state.sideNavOpen && this.props.isLoggedIn
+              this.state.sideNavOpen && isLoggedIn && hasGroup
                 ? "open"
                 : "closed"
             }`}
           >
             <div id="open-close" onClick={this.toggleSideNav}>
-              <FaTimes/>
+              <FaTimes />
             </div>
             <SideNav
               toggleSideNav={this.toggleSideNav}
@@ -60,6 +62,7 @@ class App extends React.Component {
 const mapState = (state) => {
   return {
     isLoggedIn: !!state.user.id,
+    hasGroup: !!state.user.groupId,
   };
 };
 
@@ -67,4 +70,5 @@ export default connect(mapState, null)(App);
 
 App.propTypes = {
   isLoggedIn: PropTypes.bool.isRequired,
+  hasGroup: PropTypes.bool.isRequired,
 };

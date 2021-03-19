@@ -131,6 +131,8 @@
   font-family: "Poppins", sans-serif;
   font-size: 2em;
   color: black;
+  display: flex;
+  align-items: center;
 }
 
 @media only screen and (max-width: 600px) {

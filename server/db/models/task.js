@@ -7,7 +7,7 @@ const Task = db.define("tasks", {
     allowNull: false,
   },
   description: {
-    type: Sequelize.STRING,
+    type: Sequelize.STRING
   },
   isCompleted: {
     type: Sequelize.BOOLEAN,

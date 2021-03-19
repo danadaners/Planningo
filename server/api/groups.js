@@ -1,29 +1,23 @@
 const router = require("express").Router();
-const {
-  Group,
-  User,
-  Task,
-  Category,
-  Point,
-} = require("../db/models");
+const { Group, User, Task, Category, Point } = require("../db/models");
 
 router.get("/", async (req, res, next) => {
   try {
-    const user = await User.findByPk(req.user.id)
+    const user = await User.findByPk(req.user.id);
 
     const group = await Group.findOne({
       where: {
-        id: user.groupId
+        id: user.groupId,
       },
       include: [
         {
-          model: User,
+          model: Category,
         },
         {
-          model: Category,
-        }
+          model: User,
+        },
       ],
-    })
+    });
     res.json([group]);
   } catch (err) {
     next(err);
@@ -33,12 +27,21 @@ router.get("/", async (req, res, next) => {
 //GET single group
 router.get("/:groupId", async (req, res, next) => {
   try {
-    const group = await Group.findByPk(req.params.groupId, {
+    const group = await Group.findOne({
+      where: {
+        id: req.params.groupId,
+      },
       include: [
         {
           model: Category,
         },
-      ]
+        {
+          model: User,
+        },
+        {
+          model: Point,
+        },
+      ],
     });
     res.json(group);
   } catch (err) {
@@ -53,12 +56,12 @@ router.post("/", async (req, res, next) => {
       name: req.body.name,
       description: req.body.description,
       color: req.body.color,
-      imageUrl: req.body.imageUrl
+      imageUrl: req.body.imageUrl,
     });
-    const user = await User.findByPk(req.user.id)
+    const user = await User.findByPk(req.user.id);
 
     await user.update({
-        groupId: group.id
+      groupId: group.id,
     });
 
     await Category.bulkCreate([
@@ -91,14 +94,6 @@ router.post("/", async (req, res, next) => {
         imageUrl: "/assets/icons/misc/003-book.png",
       },
       {
-        name: "Family",
-        color: "#40E0D0",
-        groupId: group.id,
-        isShopping: false,
-        imageUrl: "/assets/icons/misc/012-avatar.png",
-      },
-
-      {
         name: "Grocery",
         color: "#FFBF00",
         groupId: group.id,
@@ -106,6 +101,8 @@ router.post("/", async (req, res, next) => {
         imageUrl: "/assets/icons/misc/004-commerce and shopping.png",
       },
     ]);
+
+    await Group.findByPk(group.id);
     res.json(group);
   } catch (err) {
     next(err);

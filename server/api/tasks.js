@@ -139,9 +139,6 @@ router.patch("/:taskId", async (req, res, next) => {
       },
     });
 
-    user.update({
-      tasksCompleted: (user.tasksCompleted += 1),
-    });
     task.update({ ...updatedFields });
     res.sendStatus(204);
   } catch (err) {

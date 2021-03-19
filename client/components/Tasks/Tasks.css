@@ -203,7 +203,7 @@
 }
 
 /* bottom add task div (running out of names) */
-#just-another-layout-div {
+#filters {
   height: 100%;
   width: 10%;
   min-width: 150px;
@@ -260,7 +260,7 @@
     height: 100%;
     width: 100%;
   }
-  #just-another-layout-div {
+  #filters {
     display: none;
   }
   .task-box-header {
