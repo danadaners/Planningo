@@ -15,7 +15,8 @@ import {
   Planningo,
   CreateGroup,
   MyGroup,
-  Rewards
+  Rewards,
+  GroupPoints
 } from "./components";
 import { me } from "./store";
 
@@ -44,6 +45,7 @@ class Routes extends Component {
             <Route exact path="/tasks" component={TaskList} />
             <Route path="/shoppinglist" component={ShoppingList} />
             <Route exact path="/group" component={MyGroup} />
+            <Route exact path="/datavis" component={GroupPoints} />
             <Route exact path="/group/new">
               {hasGroup ? <Redirect to="/group" /> : <CreateGroup/>}
             </Route>

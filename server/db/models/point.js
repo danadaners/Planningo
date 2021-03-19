@@ -12,6 +12,12 @@ const Point = db.define("points", {
   categoryName: {
     type: Sequelize.STRING,
   },
+  categoryColor: {
+    type: Sequelize.STRING,
+  },
+  userAvatar: {
+    type: Sequelize.STRING,
+  }
 });
 
 module.exports = Point;

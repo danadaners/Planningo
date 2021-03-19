@@ -17,4 +17,5 @@ export { default as CreateGroup } from "./Groups/CreateGroup";
 export {default as MyGroup} from "./Groups/MyGroup"
 export {default as EditUsers} from "./Groups/EditUsers"
 export {default as Rewards} from "./Groups/Rewards"
+export {default as GroupPoints} from "./DataVis/GroupPoints"
 //data vis
