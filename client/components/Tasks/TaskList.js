@@ -19,9 +19,9 @@ import {
 import { format } from "date-fns";
 import "./grouptasks.css";
 import "./Tasks.css";
+import isBefore from "date-fns/isBefore";
 
 //TODO: filters - show/hide completed tasks, sort by users (should already be sorted by date)
-//TODO: show "overdue" in red
 //TODO: single task view
 //TODO: modals for deleting task and comppleting
 //TODO: user permissions for tasks? like completing and deleting
@@ -81,6 +81,7 @@ class TaskList extends React.Component {
     let tasks = this.props.group.tasks;
     let group = this.props.group;
     let categories = this.props.group.categories;
+    const today = format(new Date(), "yyyy-MM-dd");
 
     return (
       <div className="task-wrapper">
@@ -154,7 +155,7 @@ class TaskList extends React.Component {
                         >
                           <div id="name-date-wrap">
                             {task.name}
-                            <p id="date-created">
+                            <p className={isBefore(new Date(task.end), new Date()) && task.end !== today ? "date-due overdue" : "date-due"}>
                               {format(
                                 new Date(`${task.end}T12:00:00.000Z`),
                                 "MMM d"
@@ -162,7 +163,6 @@ class TaskList extends React.Component {
                             </p>
                           </div>
 
-                          {task.points > 0 ? (
                             <div id="numberpoints">
                               {task.points}
                               <img
@@ -170,7 +170,6 @@ class TaskList extends React.Component {
                                 className="coin"
                               ></img>
                             </div>
-                          ) : null}
                         </a>
 
                         <UpdateTaskModal
@@ -191,7 +190,9 @@ class TaskList extends React.Component {
                     ))
                 : null}
             </div>
-            <div id="just-another-layout-div"></div>
+            <div id="filters">
+              Filters
+            </div>
           </div>
           <div id="add-button-div">
             <button

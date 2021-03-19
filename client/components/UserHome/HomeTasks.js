@@ -2,16 +2,12 @@ import React from "react";
 import format from "date-fns/format";
 import isBefore from "date-fns/isBefore";
 
-/*
- * Show today's tasks
- * Show upcoming tasks
- * Show overdue tasks
- * Show newly UPDATED tasks
- * show NEW tasks
- * show USER'S TASKS
- */
+//TODO: feed: completed task, claimed reward, new task
+//show x new tasks, show x newly updated tasks etc
+//recently completed
 
-export const HomeTasks = ({ tasks }) => {
+
+const HomeTasks = ({ tasks }) => {
   const today = format(new Date(), "yyyy-MM-dd");
 
   const todayTasks =
@@ -29,9 +25,6 @@ export const HomeTasks = ({ tasks }) => {
         )
       : null;
 
-  console.log(overdueTasks);
-
-
   return (
     <div>
       <h2>Today</h2>
@@ -46,3 +39,5 @@ export const HomeTasks = ({ tasks }) => {
     </div>
   );
 };
+
+export default HomeTasks;

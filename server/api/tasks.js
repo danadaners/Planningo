@@ -1,6 +1,6 @@
 const router = require("express").Router();
 
-const { Task, Group, User, Category } = require("../db/models");
+const { Task, Group, User, Category, Point } = require("../db/models");
 
 //GET /api/tasks/home
 router.get("/home", async (req, res, next) => {
@@ -100,8 +100,6 @@ router.post("/shopping", async (req, res, next) => {
       description: req.body.description,
       categoryId: req.body.categoryId,
       groupId: req.body.groupId,
-      start: new Date(),
-      end: new Date(),
     });
     res.json(task);
   } catch (err) {
@@ -138,7 +136,9 @@ router.patch("/:taskId", async (req, res, next) => {
         id: task.userId,
       },
     });
-
+    // user.update({
+    //   tasksCompleted: (user.tasksCompleted += 1),
+    // });
     task.update({ ...updatedFields });
     res.sendStatus(204);
   } catch (err) {

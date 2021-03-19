@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Group, User, Task, Category, Point } = require("../db/models");
+const { Group, User, Task, Category } = require("../db/models");
 
 router.get("/", async (req, res, next) => {
   try {
@@ -37,9 +37,6 @@ router.get("/:groupId", async (req, res, next) => {
         },
         {
           model: User,
-        },
-        {
-          model: Point,
         },
       ],
     });

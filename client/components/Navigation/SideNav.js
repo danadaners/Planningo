@@ -12,10 +12,11 @@ class SideNav extends React.Component {
   }
 
   componentDidMount() {
-    if(this.props.isLoggedIn){
+    if (this.props.isLoggedIn) {
       this.props.fetchGroup(this.props.user.groupId);
     }
   }
+
   render() {
     let { user, group, handleClick, toggleSideNav } = this.props;
     return (
@@ -23,19 +24,27 @@ class SideNav extends React.Component {
         <div id="nav-user-wrap">
           <div id="user-nav">
             <Link to="/account" onClick={toggleSideNav}>
-              <img src={user.avatarUrl} id="user-icon" style={{backgroundColor: user.color}} width={80} height={80}></img>
+              <img
+                src={user.avatarUrl}
+                id="user-icon"
+                style={{ backgroundColor: user.color }}
+                width={80}
+                height={80}
+              ></img>
             </Link>
-            {user.firstName}{" "}{user.lastName}
+            {user.firstName} {user.lastName}
           </div>
 
-          <h4 className="nav-tool-title">My Group</h4>
-          {group ? group.name : null}
-
+          <h4 className="nav-tool-title"> {group ? group.name : null}</h4>
         </div>
-
         <div className="nav-user-links-wrap">
+          <div className="nav-user-links b">
+            <Link to="/rewards" onClick={toggleSideNav}>
+              Rewards
+            </Link>
+          </div>
           <div className="nav-user-links a">
-            <Link to="/groups" onClick={toggleSideNav}>
+            <Link to="/group" onClick={toggleSideNav}>
               Group Settings
             </Link>
           </div>
@@ -53,7 +62,7 @@ class SideNav extends React.Component {
 const mapState = (state) => ({
   user: state.user,
   isLoggedIn: !!state.user.id,
-  group: state.singleGroup
+  group: state.singleGroup,
 });
 
 const mapDispatch = (dispatch) => ({
