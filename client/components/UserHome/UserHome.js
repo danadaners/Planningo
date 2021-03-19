@@ -1,24 +1,20 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import "./UserHome.css";
 import { fetchUserTasksThunk } from "../../store/tasks";
 import { fetchSingleGroup } from "../../store/singleGroup";
-import format from 'date-fns/format'
-
+import format from "date-fns/format";
+import { UserPoints } from "../DataVis/UserPoints";
 
 /*
-* TODO: show basic data vis
 * Show today's tasks
 * Show upcoming tasks
 * Show overdue tasks
 * Show newly UPDATED tasks
 * show NEW tasks
 * show USER'S TASKS
-
-*DONT SHOW SHOPPING LIST? OR AT LEAST SEPARATE TODOS AND SHOPPING
-
 */
 
 class UserHome extends React.Component {
@@ -29,50 +25,50 @@ class UserHome extends React.Component {
 
   componentDidMount() {
     this.props.fetchUserTasks();
-    this.props.fetchGroup(this.props.groupId);
+    this.props.fetchGroup(this.props.user.groupId);
   }
 
   render() {
-    const { firstName, tasks } = this.props;
-    const today = format(new Date(),"yyyy-MM-dd")
+    const { user, firstName, tasks, users } = this.props;
+    const today = format(new Date(), "yyyy-MM-dd");
 
-    return (
-      <div className="userhome-wrapper">
-        <h3>{`Hello, ${firstName}`}</h3>
+      return (
+        <div className="userhome-wrapper">
+          <h3>{`Hello, ${firstName}`}</h3>
+          <UserPoints users={users} user={user} />
+          <h3>Today</h3>
 
-        <h3>Today</h3>
-
-        {tasks && tasks.length ? (
-
-          <ul>
-            {tasks
-              .filter((task) => {
-                return task.start === today;
-              })
-              .filter((task) => {
-                return task.isCompleted === false;
-              })
-              .map((task) => {
-                return <li key={task.id}>{task.name}</li>;
-              })}
-          </ul>
-        ) : (
-          null
-        )}
-        <div className="tasks-link">
-          <Link to="/tasks">Go to my tasks</Link>
+          {tasks && tasks.length ? (
+            <ul>
+              {tasks
+                .filter((task) => {
+                  return task.start === today;
+                })
+                .filter((task) => {
+                  return task.isCompleted === false;
+                })
+                .filter((task) => {
+                  return task.isShopping === false;
+                })
+                .map((task) => {
+                  return <li key={task.id}>{task.name}</li>;
+                })}
+            </ul>
+          ) : null}
+          <div className="tasks-link">
+            <Link to="/tasks">Go to my tasks</Link>
+          </div>
         </div>
-
-      </div>
-    );
+      );
+    }
   }
-}
+
 const mapState = (state) => {
   return {
     user: state.user,
     firstName: state.user.firstName,
     tasks: state.tasks,
-    groupId: state.user.groupId
+    users: state.singleGroup.users,
   };
 };
 

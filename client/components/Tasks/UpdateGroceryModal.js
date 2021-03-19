@@ -4,20 +4,17 @@ import { updateTaskThunk } from "../../store/tasks";
 import { fetchTasksThunk } from "../../store/tasks";
 import { fetchGroupsThunk } from "../../store/allGroups";
 import "./taskmodal.css";
-import KeyboardDatePickerTab from "../Calendar/DatePicker";
 import { FaTimes } from 'react-icons/fa'
 
-class UpdateTaskModal extends Component {
+class UpdateGroceryModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
       name: this.props.task.name,
       groupId: this.props.task.groupId,
       description: this.props.task.description || "",
-      points: this.props.task.points,
       categoryId: this.props.task.categoryId,
       taskId: this.props.task.id,
-      selectedDate: `${this.props.task.start}T12:00:00.000Z`,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -95,20 +92,8 @@ class UpdateTaskModal extends Component {
                 rows="4"
                 className="edit-modal-input desc"
                 onChange={this.handleChange}
-                value={this.state.description}
+                value={this.state.description || ""}
               />
-
-              <div>
-                <label htmlFor="points">Points:</label>
-                <textarea
-                  name="points"
-                  type="text"
-                  className="edit-modal-input points"
-                  onChange={this.handleChange}
-                  value={this.state.points}
-                />
-                <img src="/assets/coin.png" className="coin"></img>
-              </div>
 
               <div id="group-category-wrap">
                 <div id="modal-category-wrap">
@@ -149,13 +134,6 @@ class UpdateTaskModal extends Component {
                 </div>
               </div>
               {<div> {this.state.error} </div>}
-              <div id="choose-date">
-                Due By:
-                <KeyboardDatePickerTab
-                  selectedDate={this.state.selectedDate}
-                  handleDateChange={this.handleDateChange}
-                />
-              </div>
               <button type="submit" id="modal-submit-button">
                 Update
               </button>
@@ -178,4 +156,4 @@ const mapDispatch = (dispatch) => ({
   fetchGroups: () => dispatch(fetchGroupsThunk()),
 });
 
-export default connect(mapState, mapDispatch)(UpdateTaskModal);
+export default connect(mapState, mapDispatch)(UpdateGroceryModal);

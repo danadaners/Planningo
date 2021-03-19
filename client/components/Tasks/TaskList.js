@@ -92,7 +92,6 @@ class TaskList extends React.Component {
           <div className="task-box-body">
             <div id="task-box-categories">
               <div id="category-title">Categories</div>
-              {/* <div className="category-icon-wrap">All</div> */}
 
               {categories
                 ? categories.map((category) => (

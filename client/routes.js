@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { withRouter, Route, Switch } from "react-router-dom";
+import { withRouter, Route, Switch, Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
-//TODO: Redirect to create/join group if not in group
 
 import {
   UserHome,
@@ -13,8 +12,9 @@ import {
   ShoppingList,
   AppCalendar,
   TaskList,
+  Planningo,
   CreateGroup,
-  Planningo
+  MyGroup
 } from "./components";
 import { me } from "./store";
 
@@ -24,7 +24,7 @@ class Routes extends Component {
   }
 
   render() {
-    const { isLoggedIn,  } = this.props;
+    const { isLoggedIn, hasGroup } = this.props;
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
@@ -34,18 +34,21 @@ class Routes extends Component {
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
-
-            <Route exact path={["/home", "/"]} component={UserHome} />
-
+            <Route exact path={["/home", "/"]}>
+              {!hasGroup ? <Redirect to="/group" /> : <UserHome />}
+            </Route>
             <Route exact path="/account" component={Account} />
             <Route exact path="/account/settings" component={AccountSettings} />
             <Route path="/calendar" component={AppCalendar} />
             <Route exact path="/tasks" component={TaskList} />
             <Route path="/shoppinglist" component={ShoppingList} />
-
-           { <Route exact path="/groups/create" component={CreateGroup} />}
+            <Route exact path="/group" component={MyGroup} />
+            <Route exact path="/group/new">
+              {hasGroup ? <Redirect to="/group" /> : <CreateGroup/>}
+            </Route>
           </Switch>
         )}
+
         {/* Displays our Login component as a fallback */}
         <Route component={Login} />
       </Switch>
@@ -56,7 +59,7 @@ class Routes extends Component {
 const mapState = (state) => {
   return {
     isLoggedIn: !!state.user.id,
-    hasGroup: !!state.user.groupId
+    hasGroup: !!state.user.groupId,
   };
 };
 
@@ -75,4 +78,5 @@ export default withRouter(connect(mapState, mapDispatch)(Routes));
 Routes.propTypes = {
   loadInitialData: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool.isRequired,
+  hasGroup: PropTypes.bool.isRequired,
 };

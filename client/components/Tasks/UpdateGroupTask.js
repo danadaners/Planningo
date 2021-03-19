@@ -11,7 +11,7 @@ class UpdateGroupTaskModal extends Component {
     super(props);
     this.state = {
       name: this.props.task.name,
-      userId: "",
+      userId: this.props.userId,
       description: this.props.task.description,
       points: this.props.task.points,
       categoryId: this.props.task.categoryId,
@@ -44,8 +44,7 @@ class UpdateGroupTaskModal extends Component {
         return false;
       } else {
         await this.props.updateGroupTask(this.state, this.props.group.id);
-        alert(`Task was updated! Redirecting you to the tasks page.`);
-        await this.props.fetchGroup(this.props.group.id);
+                await this.props.fetchGroup(this.props.group.id);
         this.props.onClose();
       }
     } catch (err) {
@@ -70,7 +69,7 @@ class UpdateGroupTaskModal extends Component {
         <div className="task-modal-content">
           <div id="top-taskmodal-div">
             <div id="modal-title">
-              UPDATE {this.props.task.isShopping === false ? "TASK" : "ITEM"}{" "}
+              UPDATE TASK
             </div>
             <button
               onClick={(e) => this.onClose(e)}
@@ -83,7 +82,7 @@ class UpdateGroupTaskModal extends Component {
           <div id="lower-taskmodal-div">
             <form id="add-task-form" onSubmit={this.handleSubmit}>
               <label htmlFor="name">
-                {this.props.task.isShopping === false ? "Task:" : "Item:"}
+                Task
               </label>
               <input
                 name="name"
@@ -100,9 +99,8 @@ class UpdateGroupTaskModal extends Component {
                 rows="4"
                 className="modal-input"
                 onChange={this.handleChange}
-                value={this.state.description}
+                value={this.state.description || ""}
               />
-              {this.props.task.isShopping === false ? (
                 <div>
                   <label htmlFor="points">Points:</label>
                   <textarea
@@ -113,14 +111,13 @@ class UpdateGroupTaskModal extends Component {
                     value={this.state.points}
                   />
                 </div>
-              ) : null}
 
               <label htmlFor="userId"></label>
               <select
                 onChange={(e) =>
                   this.setState({ userId: e.target.value || null })
                 }
-                value={this.state.userId || ""}
+                value={this.state.userId}
                 name="userId"
               >
                 <option value="" disabled>
@@ -153,8 +150,7 @@ class UpdateGroupTaskModal extends Component {
                   className="choose-category"
                 >
                   <option value="">None</option>
-                  {this.props.task.isShopping === false
-                    ? categories
+                  {categories
                         .filter((category) => {
                           return category.isShopping === false;
                         })
@@ -165,41 +161,7 @@ class UpdateGroupTaskModal extends Component {
                             </option>
                           );
                         })
-                    : categories
-                        .filter((category) => {
-                          return category.isShopping === true;
-                        })
-                        .map((category) => {
-                          return (
-                            <option key={category.id} value={category.id}>
-                              {category.name}
-                            </option>
-                          );
-                        })}
-
-                  {/* {this.props.task.isShopping === false
-                    ? categories
-                      ? categories
-                          .filter((category) => {
-                            return category.isShopping === false;
-                          })
-                          .map((category) => (
-                            <option key={category.id} value={category.id}>
-                              {category.name}
-                            </option>
-                          ))
-                      : null
-                    : categories
-                    ? categories
-                        .filter((category) => {
-                          return category.isShopping === true;
-                        })
-                        .map((category) => (
-                          <option key={category.id} value={category.id}>
-                            {category.name}
-                          </option>
-                        ))
-                    : null} */}
+                   }
                 </select>
               </div>
             </form>

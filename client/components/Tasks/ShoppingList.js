@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { updateTaskCompletion } from "../../store/singletask";
 import "./Tasks.css";
 import CreateTaskModal from "./CreateTaskModal";
-import UpdateTaskModal from "./UpdateTaskModal";
+import UpdateGroceryModal from "./UpdateGroceryModal";
 import { fetchSingleGroup } from "../../store/singleGroup";
 import { fetchShoppingItemsThunk, removeTaskThunk } from "../../store/tasks";
 import {   FaPlusSquare, FaCheckCircle, FaTrashAlt } from 'react-icons/fa'
@@ -118,7 +118,7 @@ class ShoppingList extends React.Component {
                         ) : null}
                       </a>
 
-                      <UpdateTaskModal
+                      <UpdateGroceryModal
                         selectedTask={task.id === this.state.taskId}
                         task={task}
                         onClose={(e) => this.showTaskModal(e)}
