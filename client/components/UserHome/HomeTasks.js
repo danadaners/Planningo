@@ -3,9 +3,11 @@ import format from "date-fns/format";
 import isBefore from "date-fns/isBefore";
 
 //TODO: feed: completed task, claimed reward, new task
+//show x new tasks, show x newly updated tasks etc
+//recently completed
 
 
-export const HomeTasks = ({ tasks }) => {
+const HomeTasks = ({ tasks }) => {
   const today = format(new Date(), "yyyy-MM-dd");
 
   const todayTasks =
@@ -37,3 +39,5 @@ export const HomeTasks = ({ tasks }) => {
     </div>
   );
 };
+
+export default HomeTasks;

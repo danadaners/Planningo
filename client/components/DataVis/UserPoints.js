@@ -1,7 +1,7 @@
 import React from "react";
 import "./points.css";
 
-export const UserPoints = ({ user }) => {
+const UserPoints = ({ user }) => {
   return (
     <div className="userpoints">
       {user ? (
@@ -19,3 +19,5 @@ export const UserPoints = ({ user }) => {
     </div>
   );
 };
+
+export default UserPoints;

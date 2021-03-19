@@ -100,8 +100,6 @@ router.post("/shopping", async (req, res, next) => {
       description: req.body.description,
       categoryId: req.body.categoryId,
       groupId: req.body.groupId,
-      start: new Date(),
-      end: new Date(),
     });
     res.json(task);
   } catch (err) {

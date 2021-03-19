@@ -7,7 +7,6 @@ import UpdateGroceryModal from "./UpdateGroceryModal";
 import { fetchSingleGroup } from "../../store/singleGroup";
 import { fetchShoppingItemsThunk, removeTaskThunk } from "../../store/tasks";
 import { FaPlusSquare, FaCheckCircle, FaTrashAlt } from "react-icons/fa";
-//TODO: DISPLAY SHOPPING CATEGORIES
 
 class ShoppingList extends React.Component {
   constructor(props) {
@@ -45,8 +44,6 @@ class ShoppingList extends React.Component {
   render() {
     let { tasks } = this.props.tasks;
     let categories = this.props.group.categories;
-
-    console.log('CAT!!!!!', this.props.group)
 
     return (
       <div className="task-wrapper">
@@ -116,18 +113,7 @@ class ShoppingList extends React.Component {
 
                         <div id="name-date-wrap">
                           {task.name}
-                          {/* <p id="date-created">
-                            added {format(new Date(task.createdAt), "MMM d")}
-                          </p> */}
-                          <p id="date-created">
-                            {format(
-                              new Date(`${task.start}T12:00:00.000Z`),
-                              "MMM d"
-                            )}
-                          </p>
                         </div>
-
-                        <div id="name-date-wrap">{task.name}</div>
 
                       </a>
 
@@ -146,9 +132,6 @@ class ShoppingList extends React.Component {
                     </div>
                   ))
                 : null}
-            </div>
-            <div id="filters">
-              <div>Filters</div>
             </div>
           </div>
           <div id="add-button-div">

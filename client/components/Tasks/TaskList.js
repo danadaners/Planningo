@@ -22,7 +22,6 @@ import "./Tasks.css";
 import isBefore from "date-fns/isBefore";
 
 //TODO: filters - show/hide completed tasks, sort by users (should already be sorted by date)
-//TODO: show "overdue" in red
 //TODO: single task view
 //TODO: modals for deleting task and comppleting
 //TODO: user permissions for tasks? like completing and deleting
