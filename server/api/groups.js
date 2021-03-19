@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Group, User, Task, Category } = require("../db/models");
+const { Group, User, Task, Category, Point } = require("../db/models");
 
 router.get("/", async (req, res, next) => {
   try {
@@ -59,6 +59,7 @@ router.post("/", async (req, res, next) => {
 
     await user.update({
       groupId: group.id,
+      isGroupAdmin: true,
     });
 
     await Category.bulkCreate([
@@ -129,21 +130,20 @@ router.delete("/:groupId", async (req, res, next) => {
   }
 });
 
-// //POST USER to group
+// // //POST USER to group
 // router.post("/:groupId", async (req, res, next) => {
 //   try {
-//     const user = await User.findOrCreate({
+//     const user = await User.findOne({
 //       where: {
-
 //         email: req.body.email,
 //       },
 //     });
-//     // const newUser = await User_Group.findOrCreate({
-//     //   where: {
-//     //     groupId: req.params.groupId,
-//     //     userId: user.id,
-//     //   },
-//     // });
+//     const newUser = await User_Group.findOrCreate({
+//       where: {
+//         groupId: req.params.groupId,
+//         userId: user.id,
+//       },
+//     });
 //     res.json(user);
 //   } catch (err) {
 //     next(err);
@@ -290,13 +290,13 @@ router.put("/:groupId/tasks", async (req, res, next) => {
 //GET /api/groups/:groupId/rewards
 router.get("/:groupId/rewards", async (req, res, next) => {
   try {
-    const groupPoints = await Point.findAll({
+    const groupPoints = await User.findAll({
       where: {
         groupId: req.params.groupId,
       },
       include: [
         {
-          model: User,
+          model: Point,
         },
       ],
     });
