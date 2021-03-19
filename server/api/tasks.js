@@ -85,10 +85,6 @@ router.post("/", async (req, res, next) => {
       start: req.body.selectedDate,
       end: req.body.selectedDate,
     });
-    // await User_Task.create({
-    //   userId: req.user.id,
-    //   taskId: task.id,
-    // });
     res.json(task);
   } catch (err) {
     next(err);
@@ -107,10 +103,6 @@ router.post("/shopping", async (req, res, next) => {
       start: new Date(),
       end: new Date(),
     });
-    // await User_Task.create({
-    //   userId: req.user.id,
-    //   taskId: task.id,
-    // });
     res.json(task);
   } catch (err) {
     next(err);
@@ -141,7 +133,6 @@ router.patch("/:taskId", async (req, res, next) => {
   try {
     const task = await Task.findByPk(req.params.taskId);
     const { updatedFields } = req.body;
-
     const user = await User.findOne({
       where: {
         id: task.userId,
